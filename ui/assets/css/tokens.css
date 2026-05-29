@@ -1,0 +1,286 @@
+/* ============================================
+   DATA STONE GLOBAL DESIGN SYSTEM
+   Tokens — fonte única para os 3 frontends
+   Stack: Nuxt 4 + Tailwind 4 + Nuxt UI 4 + DM Sans
+   ============================================
+   IMPORTANTE: estes tokens espelham EXATAMENTE a estrutura
+   já em uso em nexus-frontend/app/assets/css/main.css.
+   Padrão HSL (compatível com shadcn/Nuxt UI).
+*/
+
+/* ============================================
+   1. PRIMARY SCALE — escala completa (Tailwind @theme)
+   ============================================ */
+:root {
+  --color-primary-50:  #f0f5fe;
+  --color-primary-100: #dde9fc;
+  --color-primary-200: #c3d9fa;
+  --color-primary-300: #9ac2f6;
+  --color-primary-400: #6aa2f0;
+  --color-primary-500: #436fbe;  /* ★ brand primary */
+  --color-primary-600: #3d63ab;
+  --color-primary-700: #34528b;
+  --color-primary-800: #2f4672;
+  --color-primary-900: #2b3d5f;
+  --color-primary-950: #1d2840;
+}
+
+/* ============================================
+   2. FONTES
+   ============================================ */
+:root {
+  --font-dmsans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hubot:  'Hubot Sans', 'DM Sans', sans-serif;
+  --font-mono:   'JetBrains Mono', 'SF Mono', Monaco, monospace;
+}
+
+/* ============================================
+   3. SEMANTIC TOKENS — HSL (shadcn-compatible)
+   ============================================ */
+:root {
+  /* Surface */
+  --background:           0 0% 100%;
+  --foreground:           222 47% 11%;
+
+  --card:                 0 0% 100%;
+  --card-foreground:      222 47% 11%;
+
+  --popover:              0 0% 100%;
+  --popover-foreground:   222 47% 11%;
+
+  /* Primary (Data Stone Blue) */
+  --primary:              218 47% 50%;       /* #436fbe */
+  --primary-foreground:   0 0% 100%;
+
+  /* Secondary / Muted */
+  --secondary:            210 20% 98%;
+  --secondary-foreground: 215 25% 27%;
+
+  --muted:                210 20% 98%;
+  --muted-foreground:     215 16% 47%;
+
+  --accent:               218 47% 50%;
+  --accent-foreground:    0 0% 100%;
+
+  /* Status */
+  --success:              142 71% 45%;
+  --warning:              45 93% 58%;
+  --info:                 211 82% 46%;
+  --danger:               0 79% 70%;
+  --destructive:          0 79% 70%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & Rings */
+  --border:               220 13% 91%;
+  --input:                220 13% 91%;
+  --ring:                 218 47% 50%;
+
+  /* Sidebar (navy específica da Data Stone) */
+  --sidebar-background:   211 72% 28%;       /* #14467b */
+  --sidebar-foreground:   0 0% 98%;
+  --sidebar-muted:        0 0% 75%;
+  --sidebar-primary:      42 87% 58%;
+  --sidebar-accent:       211 82% 46%;
+  --sidebar-border:       211 60% 30%;
+  --sidebar-ring:         42 87% 58%;
+
+  /* Radius base */
+  --radius:               0.5rem;
+}
+
+/* ============================================
+   4. DOMAIN TOKENS — específicos Data Reveal/Nexus
+   ============================================ */
+:root {
+  --hot-alert:        0 79% 70%;     /* #FF6B6B */
+  --ice-fit-high:     142 71% 45%;   /* score alto - verde */
+  --ice-fit-medium:   45 93% 58%;    /* score médio - amarelo */
+  --ice-fit-low:      0 79% 70%;     /* score baixo - vermelho */
+  --chart-purple:     270 60% 60%;   /* empresas identificadas */
+
+  /* Icon color coding (sidebar nav) */
+  --icon-dashboard:    200 100% 49%;
+  --icon-visitors:     142 71% 45%;
+  --icon-companies:    290 50% 50%;
+  --icon-script:       201 72% 66%;
+  --icon-integrations: 42 87% 58%;
+  --icon-target:       0 79% 70%;
+}
+
+/* ============================================
+   5. ESCALAS — espaçamento, radius, fontes, sombras
+   ============================================ */
+:root {
+  /* Spacing (4px base, alinhado ao Tailwind) */
+  --space-0:  0;
+  --space-1:  0.25rem;   /* 4px */
+  --space-2:  0.5rem;    /* 8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+
+  /* Radius scale */
+  --radius-none: 0;
+  --radius-sm:   0.25rem;   /* 4px */
+  --radius-md:   0.375rem;  /* 6px */
+  --radius-lg:   0.5rem;    /* 8px - default */
+  --radius-xl:   0.75rem;   /* 12px */
+  --radius-2xl:  1rem;      /* 16px */
+  --radius-3xl:  1.5rem;    /* 24px */
+  --radius-full: 9999px;
+
+  /* Font sizes */
+  --fs-xs:   0.75rem;    /* 12px */
+  --fs-sm:   0.875rem;   /* 14px */
+  --fs-base: 1rem;       /* 16px */
+  --fs-lg:   1.125rem;   /* 18px */
+  --fs-xl:   1.25rem;    /* 20px */
+  --fs-2xl:  1.5rem;     /* 24px */
+  --fs-3xl:  1.875rem;   /* 30px */
+  --fs-4xl:  2.25rem;    /* 36px */
+  --fs-5xl:  3rem;       /* 48px */
+
+  /* Font weights */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Line heights */
+  --lh-tight:   1.2;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.7;
+
+  /* Shadows */
+  --shadow-xs:  0 1px 2px 0 rgb(15 23 42 / 0.05);
+  --shadow-sm:  0 1px 3px 0 rgb(15 23 42 / 0.08), 0 1px 2px 0 rgb(15 23 42 / 0.04);
+  --shadow-md:  0 4px 6px -1px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.04);
+  --shadow-lg:  0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.04);
+  --shadow-xl:  0 20px 25px -5px rgb(15 23 42 / 0.10), 0 8px 10px -6px rgb(15 23 42 / 0.04);
+  --shadow-card-hover: 0 12px 24px hsl(var(--foreground) / 0.12);
+  --shadow-glow-primary: 0 0 20px hsl(var(--primary) / 0.3);
+
+  /* Motion */
+  --duration-fast:   120ms;
+  --duration-normal: 200ms;
+  --duration-slow:   320ms;
+  --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-modal:    300;
+  --z-popover:  400;
+  --z-tooltip:  500;
+  --z-toast:    600;
+}
+
+/* ============================================
+   6. ALIASES --ds-* (compatibilidade com HTML legado)
+   Espelham os tokens HSL semânticos como variáveis prontas para uso direto.
+   ============================================ */
+:root {
+  /* cores resolvidas (sem hsl-wrap) */
+  --ds-primary:           hsl(var(--primary));
+  --ds-primary-hover:     hsl(218 47% 45%);
+  --ds-primary-soft:      hsl(var(--primary) / 0.1);
+  --ds-sidebar-bg:        hsl(var(--sidebar-background));
+  --ds-sidebar-fg:        hsl(var(--sidebar-foreground));
+  --ds-sidebar-accent:    hsl(var(--sidebar-primary));
+
+  --ds-bg:                hsl(var(--background));
+  --ds-card:              hsl(var(--card));
+  --ds-muted:             hsl(var(--muted));
+
+  --ds-text-primary:      hsl(var(--foreground));
+  --ds-text-secondary:    hsl(var(--muted-foreground));
+  --ds-text-tertiary:     hsl(215 16% 60%);
+
+  --ds-border:            hsl(var(--border));
+  --ds-border-strong:     hsl(220 13% 80%);
+
+  --ds-success:           hsl(var(--success));
+  --ds-warning:           hsl(var(--warning));
+  --ds-info:              hsl(var(--info));
+  --ds-danger:            hsl(var(--destructive));
+
+  --ds-hot-alert:         hsl(var(--hot-alert));
+  --ds-ice-fit-high:      hsl(var(--ice-fit-high));
+  --ds-ice-fit-medium:    hsl(var(--ice-fit-medium));
+  --ds-ice-fit-low:       hsl(var(--ice-fit-low));
+
+  /* tipografia */
+  --ds-font-sans:    var(--font-dmsans);
+  --ds-font-display: var(--font-hubot);
+  --ds-font-mono:    var(--font-mono);
+
+  /* gray scale (mapeada a tons neutros) */
+  --ds-gray-50:  hsl(210 20% 98%);
+  --ds-gray-100: hsl(220 14% 96%);
+  --ds-gray-200: hsl(220 13% 91%);
+  --ds-gray-300: hsl(216 12% 84%);
+  --ds-gray-400: hsl(218 11% 65%);
+  --ds-gray-500: hsl(220 9% 46%);
+  --ds-gray-600: hsl(215 14% 34%);
+  --ds-gray-700: hsl(217 19% 27%);
+  --ds-gray-800: hsl(215 28% 17%);
+  --ds-gray-900: hsl(222 47% 11%);
+  --ds-gray-950: hsl(222 47% 6%);
+
+  /* radius alias */
+  --ds-radius-sm:   var(--radius-sm);
+  --ds-radius-md:   var(--radius-md);
+  --ds-radius-lg:   var(--radius-lg);
+  --ds-radius-xl:   var(--radius-xl);
+  --ds-radius-2xl:  var(--radius-2xl);
+  --ds-radius-full: var(--radius-full);
+
+  /* shadows */
+  --ds-shadow-sm:    var(--shadow-sm);
+  --ds-shadow-md:    var(--shadow-md);
+  --ds-shadow-lg:    var(--shadow-lg);
+  --ds-shadow-focus: 0 0 0 3px hsl(var(--ring) / 0.25);
+
+  /* duração */
+  --ds-dur-fast:   var(--duration-fast);
+  --ds-dur-normal: var(--duration-normal);
+  --ds-dur-slow:   var(--duration-slow);
+}
+
+/* ============================================
+   7. DARK THEME
+   ============================================ */
+.dark {
+  --background:           222 47% 8%;
+  --foreground:           210 40% 98%;
+  --card:                 222 47% 10%;
+  --card-foreground:      210 40% 98%;
+  --popover:              222 47% 10%;
+  --popover-foreground:   210 40% 98%;
+  --primary:              211 72% 36%;
+  --primary-foreground:   0 0% 100%;
+  --secondary:            222 47% 15%;
+  --secondary-foreground: 210 40% 98%;
+  --muted:                222 47% 15%;
+  --muted-foreground:     215 20% 65%;
+  --accent:               42 87% 58%;
+  --accent-foreground:    222 47% 11%;
+  --destructive:          0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+  --border:               222 47% 15%;
+  --input:                222 47% 15%;
+  --ring:                 211 72% 36%;
+  --success:              142 76% 36%;
+  --warning:              42 87% 58%;
+  --info:                 211 72% 36%;
+  --danger:               0 63% 31%;
+}

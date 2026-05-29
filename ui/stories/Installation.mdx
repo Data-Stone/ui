@@ -1,0 +1,376 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introdução/Instalação" />
+
+<style>
+{`
+  .ds-install-hero {
+    background: #0f172a;
+    border-radius: 16px;
+    padding: 40px;
+    color: #fff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-install-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(67,111,190,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .ds-install-hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #fff !important;
+  }
+  .ds-install-hero p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0;
+    max-width: 520px;
+    line-height: 1.6;
+    color: #fff !important;
+  }
+
+  .ds-step {
+    margin-bottom: 32px;
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .ds-step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .ds-step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: #436fbe;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ds-step-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+  }
+  .ds-step p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+  }
+
+  .ds-code {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 12px 0 0;
+    overflow-x: auto;
+  }
+  .ds-code code {
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    line-height: 1.8;
+  }
+  .ds-code-comment { color: #64748b; }
+  .ds-code-key { color: #7dd3fc; }
+  .ds-code-string { color: #4ade80; }
+  .ds-code-bracket { color: #94a3b8; }
+  .ds-code-cmd { color: #c084fc; }
+
+  .ds-info {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 10px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    margin: 16px 0;
+  }
+  .ds-info-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .ds-info p {
+    font-size: 0.82rem;
+    color: #1e40af;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ds-warning {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 10px;
+    background: #fefce8;
+    border: 1px solid #fde68a;
+    margin: 16px 0;
+  }
+  .ds-warning p {
+    font-size: 0.82rem;
+    color: #92400e;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ds-exports {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .ds-export {
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+  }
+  .ds-export h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+  }
+  .ds-export p {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+  }
+  .ds-export code {
+    font-size: 0.75rem;
+    background: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #334155;
+  }
+
+  .ds-step p code, .ds-info p code, .ds-warning p code {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .ds-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 32px 0;
+  }
+`}
+</style>
+
+<div className="ds-install-hero">
+  <h1>Instalação</h1>
+  <p>
+    Como instalar e configurar o <code style={{background: '#000', color: '#e2e8f0', padding: '2px 8px', borderRadius: '6px'}}>@data-stone/ui</code> nos frontends da Data Stone.
+  </p>
+</div>
+
+<div className="ds-step">
+  <div className="ds-step-header">
+    <span className="ds-step-num">1</span>
+    <h3 className="ds-step-title">Configurar o registry</h3>
+  </div>
+  <p>
+    Crie ou edite o arquivo <code>.npmrc</code> na raiz do seu projeto frontend
+    para apontar o escopo <code>@data-stone</code> para o GitHub Packages.
+  </p>
+  <div className="ds-code">
+    <code>
+      <span className="ds-code-comment">{'# .npmrc'}</span><br/>
+      <span className="ds-code-key">{'@data-stone:registry'}</span>
+      <span>{'='}</span>
+      <span className="ds-code-string">{'https://npm.pkg.github.com'}</span><br/>
+      <span className="ds-code-key">{'//npm.pkg.github.com/:_authToken'}</span>
+      <span>{'='}</span>
+      <span className="ds-code-string">{'${GITHUB_TOKEN}'}</span>
+    </code>
+  </div>
+  <div className="ds-warning">
+    <span className="ds-info-icon">&#9888;</span>
+    <p>
+      O <code>GITHUB_TOKEN</code> precisa ter permissão <code>read:packages</code>.
+      Configure como variável de ambiente na máquina de deploy ou no CI.
+      Nunca commite o token diretamente no <code>.npmrc</code>.
+    </p>
+  </div>
+</div>
+
+<div className="ds-step">
+  <div className="ds-step-header">
+    <span className="ds-step-num">2</span>
+    <h3 className="ds-step-title">Instalar o pacote</h3>
+  </div>
+  <p>
+    Com o registry configurado, instale o pacote normalmente via pnpm:
+  </p>
+  <div className="ds-code">
+    <code>
+      <span className="ds-code-cmd">{'pnpm'}</span>
+      <span>{' add @data-stone/ui'}</span>
+    </code>
+  </div>
+</div>
+
+<div className="ds-step">
+  <div className="ds-step-header">
+    <span className="ds-step-num">3</span>
+    <h3 className="ds-step-title">Configurar como Nuxt Layer (recomendado)</h3>
+  </div>
+  <p>
+    Adicione o pacote como layer no <code>nuxt.config.ts</code> do seu app.
+    Isso auto-importa todos os componentes <code>Ds*</code>, composables e injeta o <code>tokens.css</code>.
+  </p>
+  <div className="ds-code">
+    <code>
+      <span className="ds-code-comment">{'// nuxt.config.ts'}</span><br/>
+      <span>{'export default '}</span>
+      <span className="ds-code-key">{'defineNuxtConfig'}</span>
+      <span className="ds-code-bracket">{'({'}</span><br/>
+      <span>{'  extends: '}</span>
+      <span className="ds-code-bracket">{'['}</span>
+      <span className="ds-code-string">{"'@data-stone/ui'"}</span>
+      <span className="ds-code-bracket">{']'}</span><br/>
+      <span className="ds-code-bracket">{'})'}</span>
+    </code>
+  </div>
+  <div className="ds-info">
+    <span className="ds-info-icon">&#8505;</span>
+    <p>
+      Com o layer ativo, todos os componentes <code>Ds*</code> ficam disponíveis globalmente sem import.
+      Os composables como <code>useFeedbackToast</code> e <code>useScreenSize</code> também são auto-importados.
+    </p>
+  </div>
+</div>
+
+<div className="ds-step">
+  <div className="ds-step-header">
+    <span className="ds-step-num">4</span>
+    <h3 className="ds-step-title">Via import direto (alternativa)</h3>
+  </div>
+  <p>
+    Se preferir não usar o layer, importe componentes e utils individualmente:
+  </p>
+  <div className="ds-code">
+    <code>
+      <span className="ds-code-comment">{'// Componentes e tipos'}</span><br/>
+      <span>{'import '}</span>
+      <span className="ds-code-bracket">{'{ '}</span>
+      <span className="ds-code-key">{'DsKpiGrid'}</span>
+      <span>{', type '}</span>
+      <span className="ds-code-key">{'KpiItem'}</span>
+      <span className="ds-code-bracket">{' }'}</span>
+      <span>{' from '}</span>
+      <span className="ds-code-string">{"'@data-stone/ui'"}</span><br/>
+      <br/>
+      <span className="ds-code-comment">{'// Utils de formatação'}</span><br/>
+      <span>{'import '}</span>
+      <span className="ds-code-bracket">{'{ '}</span>
+      <span className="ds-code-key">{'formatCurrency'}</span>
+      <span>{', '}</span>
+      <span className="ds-code-key">{'formatCPFCNPJ'}</span>
+      <span className="ds-code-bracket">{' }'}</span>
+      <span>{' from '}</span>
+      <span className="ds-code-string">{"'@data-stone/ui/utils'"}</span><br/>
+      <br/>
+      <span className="ds-code-comment">{'// Composables'}</span><br/>
+      <span>{'import '}</span>
+      <span className="ds-code-bracket">{'{ '}</span>
+      <span className="ds-code-key">{'useFeedbackToast'}</span>
+      <span className="ds-code-bracket">{' }'}</span>
+      <span>{' from '}</span>
+      <span className="ds-code-string">{"'@data-stone/ui/composables'"}</span><br/>
+      <br/>
+      <span className="ds-code-comment">{'// Design tokens CSS'}</span><br/>
+      <span>{'import '}</span>
+      <span className="ds-code-string">{"'@data-stone/ui/tokens.css'"}</span>
+    </code>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-step" style={{border: 'none', padding: '0'}}>
+  <h2 style={{fontSize: '1.3rem', fontWeight: 700, color: '#0f172a', marginBottom: '16px'}}>Exports disponíveis</h2>
+  <div className="ds-exports">
+    <div className="ds-export">
+      <h4>Entrypoint principal</h4>
+      <code>@data-stone/ui</code>
+      <p style={{marginTop: '6px'}}>Componentes, tipos e composables via barrel export.</p>
+    </div>
+    <div className="ds-export">
+      <h4>Nuxt Layer</h4>
+      <code>@data-stone/ui/nuxt</code>
+      <p style={{marginTop: '6px'}}>Config de layer com auto-import de componentes e composables.</p>
+    </div>
+    <div className="ds-export">
+      <h4>Utils</h4>
+      <code>@data-stone/ui/utils</code>
+      <p style={{marginTop: '6px'}}>Formatadores de data, moeda, CPF/CNPJ, CEP e validadores.</p>
+    </div>
+    <div className="ds-export">
+      <h4>Composables</h4>
+      <code>@data-stone/ui/composables</code>
+      <p style={{marginTop: '6px'}}>useScreenSize, useFeedbackToast, useGenericTable e mais.</p>
+    </div>
+    <div className="ds-export">
+      <h4>Design Tokens</h4>
+      <code>@data-stone/ui/tokens.css</code>
+      <p style={{marginTop: '6px'}}>Variáveis CSS com paleta, espaçamento, sombras e temas light/dark.</p>
+    </div>
+    <div className="ds-export">
+      <h4>Componentes individuais</h4>
+      <code>@data-stone/ui/components/*</code>
+      <p style={{marginTop: '6px'}}>Import direto de um componente .vue específico.</p>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-step" style={{border: 'none', padding: '0'}}>
+  <h2 style={{fontSize: '1.3rem', fontWeight: 700, color: '#0f172a', marginBottom: '16px'}}>Dev local com pnpm link</h2>
+  <p style={{fontSize: '0.85rem', color: '#64748b', marginBottom: '12px'}}>
+    Para desenvolver o design system e ver as mudanças em tempo real nos apps:
+  </p>
+  <div className="ds-code">
+    <code>
+      <span className="ds-code-comment">{'# No diretório do design-system/ui'}</span><br/>
+      <span className="ds-code-cmd">{'pnpm'}</span>
+      <span>{' link --global'}</span><br/>
+      <br/>
+      <span className="ds-code-comment">{'# No diretório de cada app frontend'}</span><br/>
+      <span className="ds-code-cmd">{'pnpm'}</span>
+      <span>{' link --global @data-stone/ui'}</span>
+    </code>
+  </div>
+  <div className="ds-info">
+    <span className="ds-info-icon">&#8505;</span>
+    <p>
+      O <code>pnpm link</code> cria um symlink local. Qualquer alteração no design system
+      é refletida automaticamente no app via hot-reload do Nuxt.
+    </p>
+  </div>
+</div>

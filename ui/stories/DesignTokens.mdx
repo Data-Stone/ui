@@ -1,0 +1,960 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introdução/Design Tokens" />
+
+<style>
+{`
+  .ds-tk-hero {
+    background: #0f172a;
+    border-radius: 16px;
+    padding: 40px;
+    color: #fff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-tk-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(67,111,190,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .ds-tk-hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #fff !important;
+  }
+  .ds-tk-hero p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0;
+    max-width: 560px;
+    line-height: 1.6;
+    color: #fff !important;
+  }
+
+  .ds-tk-section {
+    margin-bottom: 40px;
+  }
+  .ds-tk-section h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+  }
+  .ds-tk-section > p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+  }
+
+  .ds-tk-swatches {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .ds-tk-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .ds-tk-swatch-color {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .ds-tk-swatch-label {
+    font-size: 0.65rem;
+    color: #64748b;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    max-width: 64px;
+    word-break: break-all;
+  }
+  .ds-tk-swatch-hex {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .ds-tk-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+  }
+  .ds-tk-row:hover {
+    background: #f8fafc;
+  }
+  .ds-tk-row-var {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: #334155;
+    min-width: 200px;
+  }
+  .ds-tk-row-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: #64748b;
+    min-width: 120px;
+  }
+  .ds-tk-row-desc {
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+
+  .ds-tk-preview {
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .ds-tk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .ds-tk-card {
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fff;
+  }
+  .ds-tk-card-label {
+    font-size: 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #64748b;
+    margin-bottom: 8px;
+  }
+  .ds-tk-card-value {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .ds-tk-font-sample {
+    font-size: 1.1rem;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+
+  .ds-tk-shadow-box {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    background: #fff;
+    margin-bottom: 4px;
+  }
+
+  .ds-tk-radius-box {
+    width: 48px;
+    height: 48px;
+    background: #436fbe;
+    margin-bottom: 4px;
+  }
+
+  .ds-tk-space-bar {
+    height: 16px;
+    background: #436fbe;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    opacity: 0.7;
+  }
+
+  .ds-tk-z-bar {
+    height: 8px;
+    background: #436fbe;
+    border-radius: 4px;
+    opacity: 0.6;
+  }
+
+  .ds-tk-motion-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #436fbe;
+  }
+
+  .ds-tk-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 16px;
+    font-size: 0.82rem;
+  }
+  .ds-tk-table th {
+    text-align: left;
+    padding: 10px 16px;
+    background: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 0.78rem;
+  }
+  .ds-tk-table td {
+    padding: 8px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+  }
+  .ds-tk-table td:last-child {
+    font-family: inherit;
+    color: #94a3b8;
+  }
+  .ds-tk-table tr:hover td {
+    background: #f8fafc;
+  }
+
+  .ds-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 32px 0;
+  }
+
+  .ds-tk-section p code {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+  }
+
+  .ds-tk-semantic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .ds-tk-semantic-item {
+    text-align: center;
+    padding: 16px 12px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+  }
+  .ds-tk-semantic-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 0 auto 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .ds-tk-semantic-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .ds-tk-semantic-var {
+    font-size: 0.65rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+`}
+</style>
+
+<div className="ds-tk-hero">
+  <h1>Design Tokens</h1>
+  <p>
+    Referência visual de todas as variáveis CSS disponíveis no <code style={{background: '#000', color: '#e2e8f0', padding: '2px 8px', borderRadius: '6px'}}>tokens.css</code>
+  </p>
+</div>
+
+{/* ── 1. PRIMARY SCALE ── */}
+
+<div className="ds-tk-section">
+  <h2>Paleta Primária</h2>
+  <p>Escala completa da cor brand. A variável base é <code>--color-primary-500</code> (#436fbe).</p>
+  <div className="ds-tk-swatches">
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#f0f5fe'}} />
+      <span className="ds-tk-swatch-label">50</span>
+      <span className="ds-tk-swatch-hex">#f0f5fe</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#dde9fc'}} />
+      <span className="ds-tk-swatch-label">100</span>
+      <span className="ds-tk-swatch-hex">#dde9fc</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#c3d9fa'}} />
+      <span className="ds-tk-swatch-label">200</span>
+      <span className="ds-tk-swatch-hex">#c3d9fa</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#9ac2f6'}} />
+      <span className="ds-tk-swatch-label">300</span>
+      <span className="ds-tk-swatch-hex">#9ac2f6</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#6aa2f0'}} />
+      <span className="ds-tk-swatch-label">400</span>
+      <span className="ds-tk-swatch-hex">#6aa2f0</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#436fbe', border: '2px solid #0f172a'}} />
+      <span className="ds-tk-swatch-label" style={{fontWeight: 700, color: '#0f172a'}}>500 ★</span>
+      <span className="ds-tk-swatch-hex">#436fbe</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#3d63ab'}} />
+      <span className="ds-tk-swatch-label">600</span>
+      <span className="ds-tk-swatch-hex">#3d63ab</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#34528b'}} />
+      <span className="ds-tk-swatch-label">700</span>
+      <span className="ds-tk-swatch-hex">#34528b</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#2f4672'}} />
+      <span className="ds-tk-swatch-label">800</span>
+      <span className="ds-tk-swatch-hex">#2f4672</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#2b3d5f'}} />
+      <span className="ds-tk-swatch-label">900</span>
+      <span className="ds-tk-swatch-hex">#2b3d5f</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: '#1d2840'}} />
+      <span className="ds-tk-swatch-label">950</span>
+      <span className="ds-tk-swatch-hex">#1d2840</span>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 2. SEMANTIC COLORS ── */}
+
+<div className="ds-tk-section">
+  <h2>Cores Semânticas</h2>
+  <p>Cores com significado funcional, compatíveis com shadcn/Nuxt UI via padrão HSL.</p>
+  <div className="ds-tk-semantic-grid">
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#436fbe'}} />
+      <div className="ds-tk-semantic-name">Primary</div>
+      <div className="ds-tk-semantic-var">--primary</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#22c55e'}} />
+      <div className="ds-tk-semantic-name">Success</div>
+      <div className="ds-tk-semantic-var">--success</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#eab308'}} />
+      <div className="ds-tk-semantic-name">Warning</div>
+      <div className="ds-tk-semantic-var">--warning</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#3b82f6'}} />
+      <div className="ds-tk-semantic-name">Info</div>
+      <div className="ds-tk-semantic-var">--info</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#ef4444'}} />
+      <div className="ds-tk-semantic-name">Danger</div>
+      <div className="ds-tk-semantic-var">--danger</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#14467b'}} />
+      <div className="ds-tk-semantic-name">Sidebar</div>
+      <div className="ds-tk-semantic-var">--sidebar-background</div>
+    </div>
+  </div>
+
+  <h3 style={{fontSize: '1rem', fontWeight: 600, color: '#0f172a', margin: '24px 0 12px'}}>Superfícies</h3>
+  <table className="ds-tk-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Valor HSL</th>
+        <th>Uso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--background</td>
+        <td>0 0% 100%</td>
+        <td>Fundo da página</td>
+      </tr>
+      <tr>
+        <td>--foreground</td>
+        <td>222 47% 11%</td>
+        <td>Texto principal</td>
+      </tr>
+      <tr>
+        <td>--card</td>
+        <td>0 0% 100%</td>
+        <td>Fundo de cards</td>
+      </tr>
+      <tr>
+        <td>--muted</td>
+        <td>210 20% 98%</td>
+        <td>Fundos secundários</td>
+      </tr>
+      <tr>
+        <td>--muted-foreground</td>
+        <td>215 16% 47%</td>
+        <td>Texto secundário</td>
+      </tr>
+      <tr>
+        <td>--border</td>
+        <td>220 13% 91%</td>
+        <td>Bordas padrão</td>
+      </tr>
+      <tr>
+        <td>--ring</td>
+        <td>218 47% 50%</td>
+        <td>Focus ring</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 3. GRAY SCALE ── */}
+
+<div className="ds-tk-section">
+  <h2>Escala de Cinzas</h2>
+  <p>Tons neutros para textos, bordas e fundos. Prefixo <code>--ds-gray-*</code>.</p>
+  <div className="ds-tk-swatches">
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(210 20% 98%)'}} />
+      <span className="ds-tk-swatch-label">50</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(220 14% 96%)'}} />
+      <span className="ds-tk-swatch-label">100</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(220 13% 91%)'}} />
+      <span className="ds-tk-swatch-label">200</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(216 12% 84%)'}} />
+      <span className="ds-tk-swatch-label">300</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(218 11% 65%)'}} />
+      <span className="ds-tk-swatch-label">400</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(220 9% 46%)'}} />
+      <span className="ds-tk-swatch-label">500</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(215 14% 34%)'}} />
+      <span className="ds-tk-swatch-label">600</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(217 19% 27%)'}} />
+      <span className="ds-tk-swatch-label">700</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(215 28% 17%)'}} />
+      <span className="ds-tk-swatch-label">800</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(222 47% 11%)'}} />
+      <span className="ds-tk-swatch-label">900</span>
+    </div>
+    <div className="ds-tk-swatch">
+      <div className="ds-tk-swatch-color" style={{background: 'hsl(222 47% 6%)'}} />
+      <span className="ds-tk-swatch-label">950</span>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 4. DOMAIN TOKENS ── */}
+
+<div className="ds-tk-section">
+  <h2>Tokens de Domínio</h2>
+  <p>Cores específicas do Data Reveal / Nexus.</p>
+  <div className="ds-tk-semantic-grid">
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#FF6B6B'}} />
+      <div className="ds-tk-semantic-name">Hot Alert</div>
+      <div className="ds-tk-semantic-var">--hot-alert</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#22c55e'}} />
+      <div className="ds-tk-semantic-name">ICE Fit High</div>
+      <div className="ds-tk-semantic-var">--ice-fit-high</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#eab308'}} />
+      <div className="ds-tk-semantic-name">ICE Fit Medium</div>
+      <div className="ds-tk-semantic-var">--ice-fit-medium</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: '#ef4444'}} />
+      <div className="ds-tk-semantic-name">ICE Fit Low</div>
+      <div className="ds-tk-semantic-var">--ice-fit-low</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: 'hsl(270 60% 60%)'}} />
+      <div className="ds-tk-semantic-name">Chart Purple</div>
+      <div className="ds-tk-semantic-var">--chart-purple</div>
+    </div>
+  </div>
+
+  <h3 style={{fontSize: '1rem', fontWeight: 600, color: '#0f172a', margin: '24px 0 12px'}}>Ícones da Sidebar</h3>
+  <div className="ds-tk-semantic-grid">
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: 'hsl(200 100% 49%)'}} />
+      <div className="ds-tk-semantic-name">Dashboard</div>
+      <div className="ds-tk-semantic-var">--icon-dashboard</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: 'hsl(142 71% 45%)'}} />
+      <div className="ds-tk-semantic-name">Visitors</div>
+      <div className="ds-tk-semantic-var">--icon-visitors</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: 'hsl(290 50% 50%)'}} />
+      <div className="ds-tk-semantic-name">Companies</div>
+      <div className="ds-tk-semantic-var">--icon-companies</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: 'hsl(201 72% 66%)'}} />
+      <div className="ds-tk-semantic-name">Script</div>
+      <div className="ds-tk-semantic-var">--icon-script</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: 'hsl(42 87% 58%)'}} />
+      <div className="ds-tk-semantic-name">Integrations</div>
+      <div className="ds-tk-semantic-var">--icon-integrations</div>
+    </div>
+    <div className="ds-tk-semantic-item">
+      <div className="ds-tk-semantic-swatch" style={{background: 'hsl(0 79% 70%)'}} />
+      <div className="ds-tk-semantic-name">Target</div>
+      <div className="ds-tk-semantic-var">--icon-target</div>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 5. TIPOGRAFIA ── */}
+
+<div className="ds-tk-section">
+  <h2>Tipografia</h2>
+
+  <h3 style={{fontSize: '1rem', fontWeight: 600, color: '#0f172a', margin: '16px 0 12px'}}>Famílias</h3>
+  <table className="ds-tk-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Fonte</th>
+        <th>Uso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--font-dmsans</td>
+        <td>DM Sans</td>
+        <td>Corpo de texto (padrão)</td>
+      </tr>
+      <tr>
+        <td>--font-hubot</td>
+        <td>Hubot Sans</td>
+        <td>Títulos e display</td>
+      </tr>
+      <tr>
+        <td>--font-mono</td>
+        <td>JetBrains Mono</td>
+        <td>Código e dados técnicos</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style={{fontSize: '1rem', fontWeight: 600, color: '#0f172a', margin: '24px 0 12px'}}>Tamanhos</h3>
+  <table className="ds-tk-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Valor</th>
+        <th>Pixels</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--fs-xs</td>
+        <td>0.75rem</td>
+        <td>12px</td>
+      </tr>
+      <tr>
+        <td>--fs-sm</td>
+        <td>0.875rem</td>
+        <td>14px</td>
+      </tr>
+      <tr>
+        <td>--fs-base</td>
+        <td>1rem</td>
+        <td>16px</td>
+      </tr>
+      <tr>
+        <td>--fs-lg</td>
+        <td>1.125rem</td>
+        <td>18px</td>
+      </tr>
+      <tr>
+        <td>--fs-xl</td>
+        <td>1.25rem</td>
+        <td>20px</td>
+      </tr>
+      <tr>
+        <td>--fs-2xl</td>
+        <td>1.5rem</td>
+        <td>24px</td>
+      </tr>
+      <tr>
+        <td>--fs-3xl</td>
+        <td>1.875rem</td>
+        <td>30px</td>
+      </tr>
+      <tr>
+        <td>--fs-4xl</td>
+        <td>2.25rem</td>
+        <td>36px</td>
+      </tr>
+      <tr>
+        <td>--fs-5xl</td>
+        <td>3rem</td>
+        <td>48px</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style={{fontSize: '1rem', fontWeight: 600, color: '#0f172a', margin: '24px 0 12px'}}>Pesos e Alturas de Linha</h3>
+  <table className="ds-tk-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Valor</th>
+        <th>Uso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--fw-regular</td>
+        <td>400</td>
+        <td>Corpo de texto</td>
+      </tr>
+      <tr>
+        <td>--fw-medium</td>
+        <td>500</td>
+        <td>Labels e botões</td>
+      </tr>
+      <tr>
+        <td>--fw-semibold</td>
+        <td>600</td>
+        <td>Subtítulos</td>
+      </tr>
+      <tr>
+        <td>--fw-bold</td>
+        <td>700</td>
+        <td>Títulos e destaques</td>
+      </tr>
+      <tr>
+        <td>--lh-tight</td>
+        <td>1.2</td>
+        <td>Títulos</td>
+      </tr>
+      <tr>
+        <td>--lh-normal</td>
+        <td>1.5</td>
+        <td>Corpo de texto</td>
+      </tr>
+      <tr>
+        <td>--lh-relaxed</td>
+        <td>1.7</td>
+        <td>Textos longos</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 6. SPACING ── */}
+
+<div className="ds-tk-section">
+  <h2>Espaçamento</h2>
+  <p>Base de 4px, alinhado com o Tailwind. Prefixo <code>--space-*</code>.</p>
+  <table className="ds-tk-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Valor</th>
+        <th>Pixels</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--space-0</td>
+        <td>0</td>
+        <td>0px</td>
+      </tr>
+      <tr>
+        <td>--space-1</td>
+        <td>0.25rem</td>
+        <td>4px</td>
+      </tr>
+      <tr>
+        <td>--space-2</td>
+        <td>0.5rem</td>
+        <td>8px</td>
+      </tr>
+      <tr>
+        <td>--space-3</td>
+        <td>0.75rem</td>
+        <td>12px</td>
+      </tr>
+      <tr>
+        <td>--space-4</td>
+        <td>1rem</td>
+        <td>16px</td>
+      </tr>
+      <tr>
+        <td>--space-5</td>
+        <td>1.25rem</td>
+        <td>20px</td>
+      </tr>
+      <tr>
+        <td>--space-6</td>
+        <td>1.5rem</td>
+        <td>24px</td>
+      </tr>
+      <tr>
+        <td>--space-8</td>
+        <td>2rem</td>
+        <td>32px</td>
+      </tr>
+      <tr>
+        <td>--space-10</td>
+        <td>2.5rem</td>
+        <td>40px</td>
+      </tr>
+      <tr>
+        <td>--space-12</td>
+        <td>3rem</td>
+        <td>48px</td>
+      </tr>
+      <tr>
+        <td>--space-16</td>
+        <td>4rem</td>
+        <td>64px</td>
+      </tr>
+      <tr>
+        <td>--space-20</td>
+        <td>5rem</td>
+        <td>80px</td>
+      </tr>
+      <tr>
+        <td>--space-24</td>
+        <td>6rem</td>
+        <td>96px</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 7. RADIUS ── */}
+
+<div className="ds-tk-section">
+  <h2>Border Radius</h2>
+  <div className="ds-tk-grid">
+    <div className="ds-tk-card">
+      <div className="ds-tk-radius-box" style={{borderRadius: '0'}} />
+      <div className="ds-tk-card-label">--radius-none</div>
+      <div className="ds-tk-card-value">0</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-radius-box" style={{borderRadius: '4px'}} />
+      <div className="ds-tk-card-label">--radius-sm</div>
+      <div className="ds-tk-card-value">4px</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-radius-box" style={{borderRadius: '6px'}} />
+      <div className="ds-tk-card-label">--radius-md</div>
+      <div className="ds-tk-card-value">6px</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-radius-box" style={{borderRadius: '8px'}} />
+      <div className="ds-tk-card-label">--radius-lg (default)</div>
+      <div className="ds-tk-card-value">8px</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-radius-box" style={{borderRadius: '12px'}} />
+      <div className="ds-tk-card-label">--radius-xl</div>
+      <div className="ds-tk-card-value">12px</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-radius-box" style={{borderRadius: '16px'}} />
+      <div className="ds-tk-card-label">--radius-2xl</div>
+      <div className="ds-tk-card-value">16px</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-radius-box" style={{borderRadius: '24px'}} />
+      <div className="ds-tk-card-label">--radius-3xl</div>
+      <div className="ds-tk-card-value">24px</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-radius-box" style={{borderRadius: '9999px'}} />
+      <div className="ds-tk-card-label">--radius-full</div>
+      <div className="ds-tk-card-value">9999px</div>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 8. SHADOWS ── */}
+
+<div className="ds-tk-section">
+  <h2>Sombras</h2>
+  <div className="ds-tk-grid">
+    <div className="ds-tk-card">
+      <div className="ds-tk-shadow-box" style={{boxShadow: '0 1px 2px 0 rgb(15 23 42 / 0.05)'}} />
+      <div className="ds-tk-card-label">--shadow-xs</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-shadow-box" style={{boxShadow: '0 1px 3px 0 rgb(15 23 42 / 0.08), 0 1px 2px 0 rgb(15 23 42 / 0.04)'}} />
+      <div className="ds-tk-card-label">--shadow-sm</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-shadow-box" style={{boxShadow: '0 4px 6px -1px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.04)'}} />
+      <div className="ds-tk-card-label">--shadow-md</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-shadow-box" style={{boxShadow: '0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.04)'}} />
+      <div className="ds-tk-card-label">--shadow-lg</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-shadow-box" style={{boxShadow: '0 20px 25px -5px rgb(15 23 42 / 0.10), 0 8px 10px -6px rgb(15 23 42 / 0.04)'}} />
+      <div className="ds-tk-card-label">--shadow-xl</div>
+    </div>
+    <div className="ds-tk-card">
+      <div className="ds-tk-shadow-box" style={{boxShadow: '0 0 20px rgba(67,111,190,0.3)'}} />
+      <div className="ds-tk-card-label">--shadow-glow-primary</div>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 9. MOTION ── */}
+
+<div className="ds-tk-section">
+  <h2>Motion</h2>
+  <table className="ds-tk-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Valor</th>
+        <th>Uso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--duration-fast</td>
+        <td>120ms</td>
+        <td>Hover, toggle, micro-interações</td>
+      </tr>
+      <tr>
+        <td>--duration-normal</td>
+        <td>200ms</td>
+        <td>Transições padrão</td>
+      </tr>
+      <tr>
+        <td>--duration-slow</td>
+        <td>320ms</td>
+        <td>Modais, painéis, animações maiores</td>
+      </tr>
+      <tr>
+        <td>--ease-out</td>
+        <td>{'cubic-bezier(0.16, 1, 0.3, 1)'}</td>
+        <td>Saída suave (entrada de elementos)</td>
+      </tr>
+      <tr>
+        <td>--ease-in-out</td>
+        <td>{'cubic-bezier(0.4, 0, 0.2, 1)'}</td>
+        <td>Transições bidirecionais</td>
+      </tr>
+      <tr>
+        <td>--ease-spring</td>
+        <td>{'cubic-bezier(0.34, 1.56, 0.64, 1)'}</td>
+        <td>Efeito bounce/spring</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── 10. Z-INDEX ── */}
+
+<div className="ds-tk-section">
+  <h2>Z-Index</h2>
+  <p>Escala fixa para controle de empilhamento. Evita z-index arbitrários.</p>
+  <table className="ds-tk-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Valor</th>
+        <th>Uso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--z-dropdown</td>
+        <td>100</td>
+        <td>Menus dropdown</td>
+      </tr>
+      <tr>
+        <td>--z-sticky</td>
+        <td>200</td>
+        <td>Headers e barras fixas</td>
+      </tr>
+      <tr>
+        <td>--z-modal</td>
+        <td>300</td>
+        <td>Modais e dialogs</td>
+      </tr>
+      <tr>
+        <td>--z-popover</td>
+        <td>400</td>
+        <td>Popovers e tooltips</td>
+      </tr>
+      <tr>
+        <td>--z-tooltip</td>
+        <td>500</td>
+        <td>Tooltips de alta prioridade</td>
+      </tr>
+      <tr>
+        <td>--z-toast</td>
+        <td>600</td>
+        <td>Notificações toast (topo)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

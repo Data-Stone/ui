@@ -1,0 +1,456 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introdução/Visão geral" />
+
+<style>
+{`
+  .ds-hero {
+    background: #436fbe;
+    border-radius: 16px;
+    padding: 48px 40px;
+    color: #fff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .ds-hero h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.02em;
+    color: #fff !important;
+  }
+  .ds-hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin: 0;
+    max-width: 560px;
+    line-height: 1.6;
+    color: #fff !important;
+    font-weight: 600;
+  }
+  .ds-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .ds-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .ds-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .ds-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  .ds-card:hover {
+    border-color: #436fbe;
+    box-shadow: 0 4px 16px rgba(67,111,190,0.1);
+    transform: translateY(-2px);
+  }
+  .ds-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  .ds-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: #0f172a;
+  }
+  .ds-card p {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .ds-card-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .ds-section {
+    margin-bottom: 36px;
+  }
+  .ds-section h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ds-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .ds-stack-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #334155;
+  }
+
+  .ds-principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .ds-principle {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+  }
+  .ds-principle-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #436fbe;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ds-principle h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #0f172a;
+  }
+  .ds-principle p {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ds-code-block {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 12px 0 24px;
+    overflow-x: auto;
+  }
+  .ds-code-block code {
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    line-height: 1.7;
+  }
+  .ds-code-comment { color: #64748b; }
+  .ds-code-key { color: #7dd3fc; }
+  .ds-code-string { color: #4ade80; }
+  .ds-code-bracket { color: #94a3b8; }
+
+  .ds-frontends {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .ds-frontend {
+    text-align: center;
+    padding: 20px 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+  }
+  .ds-frontend-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-top: 8px;
+  }
+  .ds-frontend-desc {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+  .ds-frontend-icon {
+    font-size: 1.6rem;
+  }
+
+  .ds-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 32px 0;
+  }
+
+  .ds-colors {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .ds-color-swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .ds-color-swatch span {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.62rem;
+    color: #94a3b8;
+    white-space: nowrap;
+  }
+`}
+</style>
+
+<div className="ds-hero">
+  <div className="ds-badge">
+    <span className="ds-badge-dot" />
+    v0.1.0
+  </div>
+  <h1>Data Stone Design System</h1>
+  <p>
+    A fonte única de verdade visual para todos os frontends da Data Stone.
+    Componentes, tokens e padrões compartilhados entre Data Reveal, Billing, Checkout e Stone Station.
+  </p>
+</div>
+
+<div className="ds-section">
+  <h2>🏗️ Stack</h2>
+  <div className="ds-stack">
+    <span className="ds-stack-item">⚡ Vue 3.5</span>
+    <span className="ds-stack-item">💚 Nuxt 4</span>
+    <span className="ds-stack-item">🎨 Nuxt UI 4</span>
+    <span className="ds-stack-item">🌊 Tailwind CSS 4</span>
+    <span className="ds-stack-item">📐 TypeScript</span>
+    <span className="ds-stack-item">Aa DM Sans</span>
+  </div>
+</div>
+
+<div className="ds-section">
+  <h2>📦 Componentes</h2>
+  <div className="ds-cards">
+    <div className="ds-card">
+      <div className="ds-card-icon" style={{background: '#ede9fe'}}>🖥️</div>
+      <span className="ds-card-tag" style={{background: '#ede9fe', color: '#7c3aed'}}>Layout</span>
+      <h3>DsAppShell</h3>
+      <p>Shell de 2 colunas com aside + main e header opcional. Suporta modo collapsible mobile.</p>
+    </div>
+    <div className="ds-card">
+      <div className="ds-card-icon" style={{background: '#dbeafe'}}>📡</div>
+      <span className="ds-card-tag" style={{background: '#dbeafe', color: '#2563eb'}}>Navigation</span>
+      <h3>DsChannelList</h3>
+      <p>Lista de canais ou filas com indicador de status colorido e contagem.</p>
+    </div>
+    <div className="ds-card">
+      <div className="ds-card-icon" style={{background: '#d1fae5'}}>📊</div>
+      <span className="ds-card-tag" style={{background: '#d1fae5', color: '#059669'}}>Data</span>
+      <h3>DsKpiCard</h3>
+      <p>Tile de KPI com valor grande, trend com seta e modo "ao vivo" com pulse.</p>
+    </div>
+    <div className="ds-card">
+      <div className="ds-card-icon" style={{background: '#d1fae5'}}>📈</div>
+      <span className="ds-card-tag" style={{background: '#d1fae5', color: '#059669'}}>Data</span>
+      <h3>DsKpiGrid</h3>
+      <p>Grid responsiva de KpiCards com colunas configuráveis.</p>
+    </div>
+    <div className="ds-card">
+      <div className="ds-card-icon" style={{background: '#fef3c7'}}>🕐</div>
+      <span className="ds-card-tag" style={{background: '#fef3c7', color: '#d97706'}}>Data</span>
+      <h3>DsTimeline</h3>
+      <p>Feed cronológico com severity tags, ícones e slot customizável.</p>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-section">
+  <h2>🎯 Princípios</h2>
+  <div className="ds-principles">
+    <div className="ds-principle">
+      <span className="ds-principle-num">1</span>
+      <div>
+        <h4>Genéricos e data-driven</h4>
+        <p>Recebem dados via props, sem domínio de negócio acoplado.</p>
+      </div>
+    </div>
+    <div className="ds-principle">
+      <span className="ds-principle-num">2</span>
+      <div>
+        <h4>Slot-first</h4>
+        <p>Composição via slots para máxima flexibilidade. Props apenas para configuração.</p>
+      </div>
+    </div>
+    <div className="ds-principle">
+      <span className="ds-principle-num">3</span>
+      <div>
+        <h4>TypeScript estrito</h4>
+        <p>Tipos exportados e interfaces bem definidas para props consumidoras.</p>
+      </div>
+    </div>
+    <div className="ds-principle">
+      <span className="ds-principle-num">4</span>
+      <div>
+        <h4>Tokens HSL</h4>
+        <p>Compatíveis com Nuxt UI 4 e shadcn via <code>hsl(var(--primary))</code>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-section">
+  <h2>🎨 Paleta primária</h2>
+  <div className="ds-colors" style={{marginBottom: '28px'}}>
+    <div className="ds-color-swatch" style={{background: '#f0f5fe'}}><span>50</span></div>
+    <div className="ds-color-swatch" style={{background: '#dde9fc'}}><span>100</span></div>
+    <div className="ds-color-swatch" style={{background: '#c3d9fa'}}><span>200</span></div>
+    <div className="ds-color-swatch" style={{background: '#9ac2f6'}}><span>300</span></div>
+    <div className="ds-color-swatch" style={{background: '#6aa2f0'}}><span>400</span></div>
+    <div className="ds-color-swatch" style={{background: '#436fbe'}}><span>500 ★</span></div>
+    <div className="ds-color-swatch" style={{background: '#3d63ab'}}><span>600</span></div>
+    <div className="ds-color-swatch" style={{background: '#34528b'}}><span>700</span></div>
+    <div className="ds-color-swatch" style={{background: '#2f4672'}}><span>800</span></div>
+    <div className="ds-color-swatch" style={{background: '#2b3d5f'}}><span>900</span></div>
+    <div className="ds-color-swatch" style={{background: '#1d2840'}}><span>950</span></div>
+  </div>
+  <h2>🟢 Semânticas</h2>
+  <div className="ds-colors" style={{marginBottom: '28px'}}>
+    <div className="ds-color-swatch" style={{background: '#436fbe'}}><span>Primary</span></div>
+    <div className="ds-color-swatch" style={{background: '#22c55e'}}><span>Success</span></div>
+    <div className="ds-color-swatch" style={{background: '#eab308'}}><span>Warning</span></div>
+    <div className="ds-color-swatch" style={{background: '#3b82f6'}}><span>Info</span></div>
+    <div className="ds-color-swatch" style={{background: '#ef4444'}}><span>Danger</span></div>
+    <div className="ds-color-swatch" style={{background: '#14467b', border: '1px solid #14467b'}}><span>Sidebar</span></div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-section">
+  <h2>🌐 Frontends consumidores</h2>
+  <div className="ds-frontends">
+    <div className="ds-frontend">
+      <div className="ds-frontend-icon">🔍</div>
+      <div className="ds-frontend-name">Data Reveal</div>
+      <div className="ds-frontend-desc">nexus-frontend</div>
+    </div>
+    <div className="ds-frontend">
+      <div className="ds-frontend-icon">💳</div>
+      <div className="ds-frontend-name">Billing</div>
+      <div className="ds-frontend-desc">billing-frontend</div>
+    </div>
+    <div className="ds-frontend">
+      <div className="ds-frontend-icon">🛒</div>
+      <div className="ds-frontend-name">Checkout</div>
+      <div className="ds-frontend-desc">billing-checkout</div>
+    </div>
+    <div className="ds-frontend">
+      <div className="ds-frontend-icon">🏢</div>
+      <div className="ds-frontend-name">Stone Station</div>
+      <div className="ds-frontend-desc">stone-station</div>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-section">
+  <h2>🚀 Como usar</h2>
+  <h3 style={{fontSize: '0.95rem', color: '#334155', marginBottom: '8px'}}>Via Nuxt Layer (recomendado)</h3>
+  <div className="ds-code-block">
+    <code>
+      <span className="ds-code-comment">{'// nuxt.config.ts'}</span><br/>
+      <span>{'export default '}</span>
+      <span className="ds-code-key">{'defineNuxtConfig'}</span>
+      <span className="ds-code-bracket">{'({'}</span><br/>
+      <span>{'    extends: '}</span>
+      <span className="ds-code-bracket">{'['}</span>
+      <span className="ds-code-string">{"'@data-stone/ui'"}</span>
+      <span className="ds-code-bracket">{']'}</span><br/>
+      <span className="ds-code-bracket">{'})'}</span>
+    </code>
+  </div>
+  <p style={{fontSize: '0.85rem', color: '#64748b', marginBottom: '24px'}}>
+    Auto-importa todos os componentes <code>Ds*</code> e injeta <code>tokens.css</code> globalmente.
+  </p>
+
+  <h3 style={{fontSize: '0.95rem', color: '#334155', marginBottom: '8px'}}>Via import direto</h3>
+  <div className="ds-code-block">
+    <code>
+      <span>{'import '}</span>
+      <span className="ds-code-bracket">{'{ '}</span>
+      <span className="ds-code-key">{'DsKpiGrid'}</span>
+      <span>{', type '}</span>
+      <span className="ds-code-key">{'KpiItem'}</span>
+      <span className="ds-code-bracket">{' }'}</span>
+      <span>{' from '}</span>
+      <span className="ds-code-string">{"'@data-stone/ui'"}</span><br/>
+      <span>{'import '}</span>
+      <span className="ds-code-string">{"'@data-stone/ui/tokens.css'"}</span>
+    </code>
+  </div>
+</div>

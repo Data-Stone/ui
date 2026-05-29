@@ -1,0 +1,530 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introdução/Contribuição" />
+
+<style>
+{`
+  .ds-ct-hero {
+    background: #0f172a;
+    border-radius: 16px;
+    padding: 40px;
+    color: #fff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-ct-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(67,111,190,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .ds-ct-hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #fff !important;
+  }
+  .ds-ct-hero p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0;
+    max-width: 560px;
+    line-height: 1.6;
+    color: #fff !important;
+  }
+
+  .ds-ct-section {
+    margin-bottom: 36px;
+  }
+  .ds-ct-section h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+  }
+  .ds-ct-section > p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+  }
+
+  .ds-ct-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .ds-ct-step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: #436fbe;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ds-ct-step h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #0f172a;
+  }
+  .ds-ct-step p {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ds-ct-code {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 12px 0 24px;
+    overflow-x: auto;
+  }
+  .ds-ct-code code {
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    line-height: 1.8;
+  }
+  .ds-code-comment { color: #64748b; }
+  .ds-code-key { color: #7dd3fc; }
+  .ds-code-string { color: #4ade80; }
+  .ds-code-bracket { color: #94a3b8; }
+  .ds-code-cmd { color: #c084fc; }
+
+  .ds-ct-rule {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .ds-ct-rule:last-child {
+    border-bottom: none;
+  }
+  .ds-ct-rule-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ds-ct-rule-text {
+    font-size: 0.85rem;
+    color: #334155;
+    line-height: 1.5;
+  }
+  .ds-ct-rule-text strong {
+    color: #0f172a;
+  }
+
+  .ds-ct-rules-box {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .ds-ct-info {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 10px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    margin: 16px 0;
+  }
+  .ds-ct-info-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .ds-ct-info p {
+    font-size: 0.82rem;
+    color: #1e40af;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ds-ct-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 16px;
+    font-size: 0.82rem;
+  }
+  .ds-ct-table th {
+    text-align: left;
+    padding: 10px 16px;
+    background: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 0.78rem;
+  }
+  .ds-ct-table td {
+    padding: 8px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+  }
+  .ds-ct-table tr:hover td {
+    background: #f8fafc;
+  }
+  .ds-ct-table code {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+  }
+
+  .ds-ct-section p code {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+  }
+  .ds-ct-info p code {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+  }
+
+  .ds-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 32px 0;
+  }
+`}
+</style>
+
+<div className="ds-ct-hero">
+  <h1>Contribuição</h1>
+  <p>
+    Como adicionar componentes, composables e utils ao design system.
+  </p>
+</div>
+
+{/* ── NOVO COMPONENTE ── */}
+
+<div className="ds-ct-section">
+  <h2>Criar um novo componente</h2>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">1</span>
+    <div>
+      <h3>Criar o arquivo .vue</h3>
+      <p>{'Adicione em components/ com o prefixo Ds. Ex: DsMeuComponente.vue'}</p>
+    </div>
+  </div>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">2</span>
+    <div>
+      <h3>Definir props com TypeScript</h3>
+      <p>Use defineProps com interface tipada. Exporte tipos complexos no types.ts.</p>
+    </div>
+  </div>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">3</span>
+    <div>
+      <h3>Exportar no index.ts</h3>
+      <p>Adicione o export do componente no barrel export principal.</p>
+    </div>
+  </div>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">4</span>
+    <div>
+      <h3>Criar a story</h3>
+      <p>{'Adicione em stories/ seguindo o padrão DsMeuComponente.stories.ts com pelo menos uma variação.'}</p>
+    </div>
+  </div>
+
+  <div className="ds-ct-code">
+    <code>
+      <span className="ds-code-comment">{'// Estrutura mínima de um componente'}</span><br/>
+      <br/>
+      <span className="ds-code-comment">{'<!-- components/DsMeuComponente.vue -->'}</span><br/>
+      <span className="ds-code-bracket">{'<'}</span><span className="ds-code-key">{'script setup lang="ts"'}</span><span className="ds-code-bracket">{'>'}</span><br/>
+      <span>{'interface Props '}</span><span className="ds-code-bracket">{'{'}</span><br/>
+      <span>{'  title: string'}</span><br/>
+      <span>{'  variant?: '}</span><span className="ds-code-string">{"'default' | 'outline'"}</span><br/>
+      <span className="ds-code-bracket">{'}'}</span><br/>
+      <br/>
+      <span>{'const props = '}</span><span className="ds-code-key">{'withDefaults'}</span><span className="ds-code-bracket">{'('}</span><span className="ds-code-key">{'defineProps'}</span><span className="ds-code-bracket">{'<'}</span><span>{'Props'}</span><span className="ds-code-bracket">{'>()'}</span><span>{', '}</span><span className="ds-code-bracket">{'{'}</span><br/>
+      <span>{'  variant: '}</span><span className="ds-code-string">{"'default'"}</span><br/>
+      <span className="ds-code-bracket">{'}'}</span><span className="ds-code-bracket">{')'}</span><br/>
+      <span className="ds-code-bracket">{'</'}</span><span className="ds-code-key">{'script'}</span><span className="ds-code-bracket">{'>'}</span><br/>
+      <br/>
+      <span className="ds-code-bracket">{'<'}</span><span className="ds-code-key">{'template'}</span><span className="ds-code-bracket">{'>'}</span><br/>
+      <span>{'  '}</span><span className="ds-code-bracket">{'<'}</span><span>{'div class='}</span><span className="ds-code-string">{'"ds-meu-componente"'}</span><span className="ds-code-bracket">{'>'}</span><br/>
+      <span>{'    '}</span><span className="ds-code-bracket">{'<'}</span><span>{'slot /'}</span><span className="ds-code-bracket">{'>'}</span><br/>
+      <span>{'  '}</span><span className="ds-code-bracket">{'</'}</span><span>{'div'}</span><span className="ds-code-bracket">{'>'}</span><br/>
+      <span className="ds-code-bracket">{'</'}</span><span className="ds-code-key">{'template'}</span><span className="ds-code-bracket">{'>'}</span>
+    </code>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── CONVENÇÕES ── */}
+
+<div className="ds-ct-section">
+  <h2>Convenções de código</h2>
+
+  <div className="ds-ct-rules-box">
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'📝'}</span>
+      <span className="ds-ct-rule-text"><strong>Prefixo Ds</strong> — todo componente começa com Ds (DsKpiCard, DsTimeline, DsDialog)</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'🔤'}</span>
+      <span className="ds-ct-rule-text"><strong>PascalCase</strong> — arquivos e nomes de componentes em PascalCase (DsFilterBar.vue)</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'📐'}</span>
+      <span className="ds-ct-rule-text"><strong>TypeScript estrito</strong> — todas as props tipadas, sem any. Tipos complexos exportados em types.ts</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'🎰'}</span>
+      <span className="ds-ct-rule-text"><strong>Slot-first</strong> — priorize composição via slots. Props apenas para configuração e dados</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'🚫'}</span>
+      <span className="ds-ct-rule-text"><strong>Sem domínio acoplado</strong> — componentes recebem dados via props, sem lógica de negócio interna</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'🎨'}</span>
+      <span className="ds-ct-rule-text"><strong>Tokens CSS</strong> — use variáveis do tokens.css em vez de valores hardcoded (cores, espaçamento, sombras)</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'📖'}</span>
+      <span className="ds-ct-rule-text"><strong>Story obrigatória</strong> — todo componente precisa de ao menos uma story no Storybook</span>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── ESTRUTURA DE ARQUIVOS ── */}
+
+<div className="ds-ct-section">
+  <h2>Onde colocar cada coisa</h2>
+
+  <table className="ds-ct-table">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Diretório</th>
+        <th>Exemplo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Componente Vue</td>
+        <td><code>components/</code></td>
+        <td>DsKpiCard.vue</td>
+      </tr>
+      <tr>
+        <td>Composable</td>
+        <td><code>composables/</code></td>
+        <td>useFeedbackToast.ts</td>
+      </tr>
+      <tr>
+        <td>Utilitário</td>
+        <td><code>utils/</code></td>
+        <td>formatCurrency.ts</td>
+      </tr>
+      <tr>
+        <td>Tipos públicos</td>
+        <td><code>types.ts</code></td>
+        <td>KpiItem, Channel</td>
+      </tr>
+      <tr>
+        <td>Design tokens</td>
+        <td><code>assets/css/tokens.css</code></td>
+        <td>--ds-primary, --space-4</td>
+      </tr>
+      <tr>
+        <td>Story</td>
+        <td><code>stories/</code></td>
+        <td>DsKpiCard.stories.ts</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div className="ds-ct-info">
+    <span className="ds-ct-info-icon">{'ℹ'}</span>
+    <p>
+      {'Após adicionar um novo arquivo, lembre-se de exportá-lo no barrel correspondente: '}
+      <code>index.ts</code>{' para componentes e tipos, '}
+      <code>composables/index.ts</code>{' para composables, '}
+      <code>utils/index.ts</code>{' para utils.'}
+    </p>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── COMPOSABLES ── */}
+
+<div className="ds-ct-section">
+  <h2>Criar um novo composable</h2>
+  <p>{'Composables seguem o padrão use* e ficam em composables/.'}</p>
+  <div className="ds-ct-code">
+    <code>
+      <span className="ds-code-comment">{'// composables/useMeuComposable.ts'}</span><br/>
+      <span className="ds-code-key">{'export function'}</span><span>{' useMeuComposable'}</span><span className="ds-code-bracket">{'() {'}</span><br/>
+      <span>{'  const estado = '}</span><span className="ds-code-key">{'ref'}</span><span className="ds-code-bracket">{'('}</span><span className="ds-code-string">{"''"}</span><span className="ds-code-bracket">{')'}</span><br/>
+      <br/>
+      <span>{'  function atualizar'}</span><span className="ds-code-bracket">{'('}</span><span>{'valor: string'}</span><span className="ds-code-bracket">{')'}</span><span>{' '}</span><span className="ds-code-bracket">{'{'}</span><br/>
+      <span>{'    estado.value = valor'}</span><br/>
+      <span className="ds-code-bracket">{'  }'}</span><br/>
+      <br/>
+      <span>{'  return '}</span><span className="ds-code-bracket">{'{ '}</span><span>{'estado, atualizar'}</span><span className="ds-code-bracket">{' }'}</span><br/>
+      <span className="ds-code-bracket">{'}'}</span>
+    </code>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── VERSIONAMENTO ── */}
+
+<div className="ds-ct-section">
+  <h2>Versionamento e publicação</h2>
+  <p>Seguimos Semantic Versioning (SemVer). Cada mudança gera um bump de versão adequado.</p>
+
+  <table className="ds-ct-table">
+    <thead>
+      <tr>
+        <th>Mudança</th>
+        <th>Bump</th>
+        <th>Exemplo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bug fix, ajuste visual</td>
+        <td>Patch</td>
+        <td>0.1.0 &rarr; 0.1.1</td>
+      </tr>
+      <tr>
+        <td>Novo componente, composable ou util</td>
+        <td>Minor</td>
+        <td>0.1.0 &rarr; 0.2.0</td>
+      </tr>
+      <tr>
+        <td>Renomear prop, remover componente</td>
+        <td>Major</td>
+        <td>0.x &rarr; 1.0.0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style={{fontSize: '1rem', fontWeight: 600, color: '#0f172a', margin: '20px 0 12px'}}>Fluxo de PR</h3>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">1</span>
+    <div>
+      <h3>Crie uma branch</h3>
+      <p>{'Use o padrão feat/nome-do-componente ou fix/descricao-do-bug'}</p>
+    </div>
+  </div>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">2</span>
+    <div>
+      <h3>Implemente e teste no Storybook</h3>
+      <p>{'Rode pnpm storybook e valide visualmente todas as variações.'}</p>
+    </div>
+  </div>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">3</span>
+    <div>
+      <h3>Passe no type-check</h3>
+      <p>{'Rode pnpm type-check antes de abrir o PR. O CI também valida.'}</p>
+    </div>
+  </div>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">4</span>
+    <div>
+      <h3>Abra o PR e peça review</h3>
+      <p>Descreva o que foi adicionado/alterado e inclua screenshots do Storybook.</p>
+    </div>
+  </div>
+
+  <div className="ds-ct-step">
+    <span className="ds-ct-step-num">5</span>
+    <div>
+      <h3>Merge e tag</h3>
+      <p>{'Após aprovação, faça merge na main e crie a tag (ex: v0.2.0). O GitHub Actions publica automaticamente.'}</p>
+    </div>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+{/* ── CHECKLIST ── */}
+
+<div className="ds-ct-section">
+  <h2>Checklist antes do PR</h2>
+
+  <div className="ds-ct-rules-box">
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'✅'}</span>
+      <span className="ds-ct-rule-text">Componente tem prefixo <strong>Ds</strong> e está em PascalCase</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'✅'}</span>
+      <span className="ds-ct-rule-text">Props tipadas com TypeScript (sem any)</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'✅'}</span>
+      <span className="ds-ct-rule-text">Exportado no barrel export (index.ts, composables/index.ts ou utils/index.ts)</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'✅'}</span>
+      <span className="ds-ct-rule-text">Story criada com ao menos uma variação</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'✅'}</span>
+      <span className="ds-ct-rule-text">{'pnpm type-check passa sem erros'}</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'✅'}</span>
+      <span className="ds-ct-rule-text">{'pnpm lint passa sem erros'}</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'✅'}</span>
+      <span className="ds-ct-rule-text">Usa tokens CSS do design system (sem cores ou valores hardcoded)</span>
+    </div>
+    <div className="ds-ct-rule">
+      <span className="ds-ct-rule-icon">{'✅'}</span>
+      <span className="ds-ct-rule-text">Sem lógica de negócio acoplada ao componente</span>
+    </div>
+  </div>
+</div>

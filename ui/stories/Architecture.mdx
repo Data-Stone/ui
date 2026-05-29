@@ -1,0 +1,502 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introdução/Arquitetura" />
+
+<style>
+{`
+  .ds-arch-hero {
+    background: #0f172a;
+    border-radius: 16px;
+    padding: 40px;
+    color: #fff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-arch-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(67,111,190,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .ds-arch-hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #fff !important;
+  }
+  .ds-arch-hero p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0;
+    max-width: 560px;
+    line-height: 1.6;
+    color: #fff !important;
+  }
+
+  .ds-arch-section {
+    margin-bottom: 36px;
+  }
+  .ds-arch-section h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ds-arch-section > p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+  }
+
+  .ds-arch-diagram {
+    background: #0f172a;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+  .ds-arch-diagram code {
+    color: #e2e8f0;
+    font-size: 0.82rem;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    line-height: 1.7;
+    white-space: pre;
+    display: block;
+  }
+  .ds-hl { color: #7dd3fc; }
+  .ds-gn { color: #4ade80; }
+  .ds-pp { color: #c084fc; }
+  .ds-yw { color: #fbbf24; }
+  .ds-gy { color: #64748b; }
+
+  .ds-arch-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .ds-arch-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  .ds-arch-card:hover {
+    border-color: #436fbe;
+    box-shadow: 0 4px 16px rgba(67,111,190,0.1);
+    transform: translateY(-2px);
+  }
+  .ds-arch-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: #0f172a;
+  }
+  .ds-arch-card p {
+    font-size: 0.82rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .ds-arch-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  .ds-arch-card-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .ds-arch-code {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 12px 0 24px;
+    overflow-x: auto;
+  }
+  .ds-arch-code code {
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    line-height: 1.8;
+  }
+  .ds-code-comment { color: #64748b; }
+  .ds-code-key { color: #7dd3fc; }
+  .ds-code-string { color: #4ade80; }
+  .ds-code-bracket { color: #94a3b8; }
+  .ds-code-cmd { color: #c084fc; }
+
+  .ds-arch-info {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 10px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    margin: 16px 0;
+  }
+  .ds-arch-info-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .ds-arch-info p {
+    font-size: 0.82rem;
+    color: #1e40af;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ds-arch-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 0.85rem;
+  }
+  .ds-arch-table th {
+    text-align: left;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .ds-arch-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+  }
+  .ds-arch-table tr:hover td {
+    background: #f8fafc;
+  }
+
+  .ds-arch-section p code, .ds-arch-info p code {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  .ds-arch-table code {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+  }
+
+  .ds-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 32px 0;
+  }
+
+  .ds-flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0 24px;
+  }
+  .ds-flow-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #334155;
+  }
+  .ds-flow-arrow {
+    color: #436fbe;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+`}
+</style>
+
+<div className="ds-arch-hero">
+  <h1>Arquitetura</h1>
+  <p>
+    Como o <code style={{background: '#000', color: '#e2e8f0', padding: '2px 8px', borderRadius: '6px'}}>@data-stone/ui</code> se integra aos frontends da Data Stone com deploy independente por aplicação.
+  </p>
+</div>
+
+<div className="ds-arch-section">
+  <h2>Visão geral</h2>
+  <p>
+    Cada aplicação da Data Stone é deployada individualmente em sua própria máquina.
+    O design system é um pacote npm privado publicado no GitHub Packages, consumido
+    por cada frontend como uma dependência normal.
+  </p>
+  <div className="ds-arch-diagram">
+    <code>
+      <span className="ds-gy">{'                    ┌─────────────────────────────┐'}</span><br/>
+      <span className="ds-gy">{'                    │'}</span><span className="ds-hl">{'   GitHub Packages'}</span><span className="ds-gy">{'          │'}</span><br/>
+      <span className="ds-gy">{'                    │'}</span><span className="ds-gn">{'   @data-stone/ui'}</span><span className="ds-gy">{'           │'}</span><br/>
+      <span className="ds-gy">{'                    └──────────┬──────────────────┘'}</span><br/>
+      <span className="ds-gy">{'                               │'}</span><br/>
+      <span className="ds-gy">{'              ┌────────────────┼────────────────┐'}</span><br/>
+      <span className="ds-gy">{'              │                │                │'}</span><br/>
+      <span className="ds-gy">{'              ▼                ▼                ▼'}</span><br/>
+      <span className="ds-gy">{'┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐'}</span><br/>
+      <span className="ds-gy">{'│'}</span><span className="ds-pp">{' nexus-frontend'}</span><span className="ds-gy">{'  │ │'}</span><span className="ds-pp">{' billing-frontend'}</span><span className="ds-gy">{' │ │'}</span><span className="ds-pp">{' billing-checkout'}</span><span className="ds-gy">{' │'}</span><br/>
+      <span className="ds-gy">{'│'}</span><span className="ds-yw">{' Máquina A'}</span><span className="ds-gy">{'       │ │'}</span><span className="ds-yw">{' Máquina B'}</span><span className="ds-gy">{'       │ │'}</span><span className="ds-yw">{' Máquina C'}</span><span className="ds-gy">{'       │'}</span><br/>
+      <span className="ds-gy">{'└─────────────────┘ └─────────────────┘ └─────────────────┘'}</span>
+    </code>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-arch-section">
+  <h2>Estrutura dos repositórios</h2>
+  <p>
+    Cada pasta é um repositório Git independente. Não existe monorepo — cada app e o design system vivem em repos separados.
+  </p>
+  <div className="ds-arch-diagram">
+    <code>
+      <span className="ds-gy">{'Data-Stone (GitHub Org)'}</span><br/>
+      <span className="ds-gy">{'│'}</span><br/>
+      <span className="ds-gy">{'├── '}</span><span className="ds-gn">{'datastone-ui'}</span><span className="ds-gy">{'          ← @data-stone/ui (design system)'}</span><br/>
+      <span className="ds-gy">{'│   ├── '}</span>{'components/          '}<span className="ds-gy">{'← 44 componentes Ds*'}</span><br/>
+      <span className="ds-gy">{'│   ├── '}</span>{'composables/         '}<span className="ds-gy">{'← 7 composables reutilizáveis'}</span><br/>
+      <span className="ds-gy">{'│   ├── '}</span>{'utils/               '}<span className="ds-gy">{'← formatadores e validadores'}</span><br/>
+      <span className="ds-gy">{'│   ├── '}</span>{'assets/css/tokens.css '}<span className="ds-gy">{'← design tokens (light + dark)'}</span><br/>
+      <span className="ds-gy">{'│   ├── '}</span>{'nuxt.config.ts       '}<span className="ds-gy">{'← configuração Nuxt Layer'}</span><br/>
+      <span className="ds-gy">{'│   └── '}</span>{'index.ts             '}<span className="ds-gy">{'← barrel export'}</span><br/>
+      <span className="ds-gy">{'│'}</span><br/>
+      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'nexus-frontend'}</span><span className="ds-gy">{'        ← Data Reveal (Nuxt 4)'}</span><br/>
+      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'billing-frontend'}</span><span className="ds-gy">{'      ← Billing (Nuxt 4)'}</span><br/>
+      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'billing-checkout'}</span><span className="ds-gy">{'      ← Checkout (Nuxt 4)'}</span><br/>
+      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'nexus'}</span><span className="ds-gy">{'                ← Backend Data Reveal'}</span><br/>
+      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'billing-backend'}</span><span className="ds-gy">{'       ← Backend Billing'}</span><br/>
+      <span className="ds-gy">{'└── '}</span><span className="ds-pp">{'Stone-Station'}</span><span className="ds-gy">{'         ← Stone Station (Django)'}</span>
+    </code>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-arch-section">
+  <h2>Fluxo de publicação</h2>
+  <p>
+    O design system é publicado automaticamente no GitHub Packages via GitHub Actions quando uma tag de versão é criada.
+  </p>
+  <div className="ds-flow">
+    <span className="ds-flow-item">Alterar código no UI</span>
+    <span className="ds-flow-arrow">&rarr;</span>
+    <span className="ds-flow-item">Commit + Push</span>
+    <span className="ds-flow-arrow">&rarr;</span>
+    <span className="ds-flow-item">{'Criar tag '}<code style={{background: '#0f172a', color: '#4ade80', border: 'none', padding: '2px 6px', borderRadius: '4px', fontSize: '0.78rem'}}>{'v0.x.0'}</code></span>
+    <span className="ds-flow-arrow">&rarr;</span>
+    <span className="ds-flow-item">GitHub Actions publica</span>
+    <span className="ds-flow-arrow">&rarr;</span>
+    <span className="ds-flow-item">{'Apps atualizam via '}<code style={{background: '#0f172a', color: '#4ade80', border: 'none', padding: '2px 6px', borderRadius: '4px', fontSize: '0.78rem'}}>{'pnpm update'}</code></span>
+  </div>
+  <div className="ds-arch-code">
+    <code>
+      <span className="ds-code-comment">{'# Publicar nova versão'}</span><br/>
+      <span className="ds-code-cmd">{'git'}</span><span>{' tag v0.2.0'}</span><br/>
+      <span className="ds-code-cmd">{'git'}</span><span>{' push origin v0.2.0'}</span><br/>
+      <br/>
+      <span className="ds-code-comment">{'# O workflow .github/workflows/publish.yml executa automaticamente:'}</span><br/>
+      <span className="ds-code-comment">{'# → pnpm install → type-check → pnpm publish'}</span>
+    </code>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-arch-section">
+  <h2>Como o Nuxt Layer funciona</h2>
+  <p>
+    {"Quando um app declara extends: ['@data-stone/ui'], o Nuxt automaticamente:"}
+  </p>
+  <div className="ds-arch-cards">
+    <div className="ds-arch-card">
+      <div className="ds-arch-card-icon" style={{background: '#dbeafe'}}>{'🧩'}</div>
+      <span className="ds-arch-card-tag" style={{background: '#dbeafe', color: '#2563eb'}}>Auto-import</span>
+      <h3>Componentes</h3>
+      <p>{'Registra globalmente todos os 44 componentes Ds* sem necessidade de import manual.'}</p>
+    </div>
+    <div className="ds-arch-card">
+      <div className="ds-arch-card-icon" style={{background: '#d1fae5'}}>{'🔗'}</div>
+      <span className="ds-arch-card-tag" style={{background: '#d1fae5', color: '#059669'}}>Auto-import</span>
+      <h3>Composables</h3>
+      <p>Disponibiliza os 7 composables automaticamente em qualquer componente do app.</p>
+    </div>
+    <div className="ds-arch-card">
+      <div className="ds-arch-card-icon" style={{background: '#ede9fe'}}>{'🎨'}</div>
+      <span className="ds-arch-card-tag" style={{background: '#ede9fe', color: '#7c3aed'}}>CSS Global</span>
+      <h3>Design Tokens</h3>
+      <p>{'Injeta tokens.css com variáveis de cor, espaçamento, sombras e tema dark.'}</p>
+    </div>
+  </div>
+  <div className="ds-arch-code">
+    <code>
+      <span className="ds-code-comment">{'// nuxt.config.ts do app frontend'}</span><br/>
+      <span>{'export default '}</span>
+      <span className="ds-code-key">{'defineNuxtConfig'}</span>
+      <span className="ds-code-bracket">{'({'}</span><br/>
+      <span>{'  extends: '}</span>
+      <span className="ds-code-bracket">{'['}</span>
+      <span className="ds-code-string">{"'@data-stone/ui'"}</span>
+      <span className="ds-code-bracket">{'],'}</span><br/>
+      <br/>
+      <span className="ds-code-comment">{'  // Os componentes Ds* já estão disponíveis globalmente.'}</span><br/>
+      <span className="ds-code-comment">{'  // Os composables já são auto-importados.'}</span><br/>
+      <span className="ds-code-comment">{'  // O tokens.css já está injetado.'}</span><br/>
+      <span className="ds-code-bracket">{'})'}</span>
+    </code>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-arch-section">
+  <h2>Exports do pacote</h2>
+  <p>
+    O <code>package.json</code> define múltiplos entrypoints para diferentes necessidades de consumo.
+  </p>
+  <table className="ds-arch-table">
+    <thead>
+      <tr>
+        <th>Import</th>
+        <th>Conteúdo</th>
+        <th>Uso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>@data-stone/ui</code></td>
+        <td>Componentes, tipos, composables e utils</td>
+        <td>Barrel export completo</td>
+      </tr>
+      <tr>
+        <td><code>@data-stone/ui/nuxt</code></td>
+        <td>nuxt.config.ts</td>
+        <td>Nuxt Layer com auto-imports</td>
+      </tr>
+      <tr>
+        <td><code>@data-stone/ui/utils</code></td>
+        <td>Formatadores e validadores</td>
+        <td>formatCurrency, formatCPF, etc.</td>
+      </tr>
+      <tr>
+        <td><code>@data-stone/ui/composables</code></td>
+        <td>Vue composables</td>
+        <td>useFeedbackToast, useScreenSize, etc.</td>
+      </tr>
+      <tr>
+        <td><code>@data-stone/ui/tokens.css</code></td>
+        <td>Variáveis CSS</td>
+        <td>Paleta, espaçamento, sombras, dark mode</td>
+      </tr>
+      <tr>
+        <td><code>@data-stone/ui/components/*</code></td>
+        <td>Componente individual .vue</td>
+        <td>Import direto de um componente específico</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-arch-section">
+  <h2>Deploy independente</h2>
+  <p>
+    Cada app faz deploy individual na sua máquina. O design system vem resolvido como dependência no <code>node_modules</code> durante o <code>pnpm install</code> do CI.
+  </p>
+  <div className="ds-arch-diagram">
+    <code>
+      <span className="ds-yw">{'CI/CD de cada app'}</span><br/>
+      <span className="ds-gy">{'│'}</span><br/>
+      <span className="ds-gy">{'├── '}</span><span className="ds-hl">{'pnpm install'}</span><br/>
+      <span className="ds-gy">{'│   └── '}</span>{'Resolve '}<span className="ds-gn">{'@data-stone/ui@^0.x'}</span>{' do GitHub Packages'}<br/>
+      <span className="ds-gy">{'│'}</span><br/>
+      <span className="ds-gy">{'├── '}</span><span className="ds-hl">{'nuxt build'}</span><br/>
+      <span className="ds-gy">{'│   └── '}</span>{'Componentes Ds* bundlados no build final'}<br/>
+      <span className="ds-gy">{'│'}</span><br/>
+      <span className="ds-gy">{'└── '}</span><span className="ds-hl">{'deploy'}</span><span className="ds-gy">{' → '}</span>{'Sobe '}<span className="ds-pp">{'.output/'}</span>{' para a máquina'}
+    </code>
+  </div>
+  <div className="ds-arch-info">
+    <span className="ds-arch-info-icon">{'ℹ'}</span>
+    <p>
+      O <code>@data-stone/ui</code> é resolvido em build time. Após o <code>nuxt build</code>,
+      os componentes e CSS já estão embutidos no bundle final.
+      Não há dependência em runtime com o GitHub Packages.
+    </p>
+  </div>
+</div>
+
+<hr className="ds-divider" />
+
+<div className="ds-arch-section">
+  <h2>Versionamento</h2>
+  <p>
+    O design system usa Semantic Versioning (SemVer). Cada app controla quando atualizar.
+  </p>
+  <table className="ds-arch-table">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Versão</th>
+        <th>Quando usar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Patch</td>
+        <td><code>0.1.0</code> &rarr; <code>0.1.1</code></td>
+        <td>Bug fix em componente, ajuste de token</td>
+      </tr>
+      <tr>
+        <td>Minor</td>
+        <td><code>0.1.0</code> &rarr; <code>0.2.0</code></td>
+        <td>Novo componente, nova composable, nova util</td>
+      </tr>
+      <tr>
+        <td>Major</td>
+        <td><code>0.x</code> &rarr; <code>1.0.0</code></td>
+        <td>Breaking change em props, remoção de componente</td>
+      </tr>
+    </tbody>
+  </table>
+  <div className="ds-arch-info">
+    <span className="ds-arch-info-icon">{'ℹ'}</span>
+    <p>
+      {'Os apps usam '}<code>{'@data-stone/ui: "^0.1.0"'}</code>{' no '}<code>{'package.json'}</code>{'.'}
+      {' O '}<code>{'^'}</code>{' aceita patches e minors automaticamente, mas não majors.'}
+      {' Isso permite que cada app atualize no seu ritmo sem quebrar.'}
+    </p>
+  </div>
+</div>

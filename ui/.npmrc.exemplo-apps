@@ -1,0 +1,6 @@
+# =============================================================
+# Cole isso no .npmrc de cada app frontend que consome @data-stone/ui
+# (nexus-frontend, billing-frontend, billing-checkout, etc.)
+# =============================================================
+@data-stone:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
