@@ -1,0 +1,11 @@
+node_modules
+storybook-static
+.git
+.github
+.nuxt
+*.tsbuildinfo
+Dockerfile
+.dockerignore
+docker-compose*.yml
+.env*
+DEPLOY.md

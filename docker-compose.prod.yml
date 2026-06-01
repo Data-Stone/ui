@@ -1,0 +1,38 @@
+# Deploy de produção do Storybook do @data-stone/ui via Cloudflare Tunnel.
+#
+# Uso:
+#   1. Crie um tunnel no Cloudflare Zero Trust e copie o TOKEN
+#   2. No dashboard do tunnel, adicione um "Public hostname":
+#        - Subdomain/Domain: o que você quer (ex. ui.seudominio.com.br)
+#        - Service: HTTP  →  storybook:80
+#   3. cp .env.prod.example .env.prod   e cole o TUNNEL_TOKEN
+#   4. docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --build
+#
+# Não abre portas no servidor: o cloudflared faz conexão de SAÍDA pra Cloudflare,
+# que cuida do TLS/HTTPS e do DNS automaticamente.
+
+services:
+  storybook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: datastone-ui-storybook:latest
+    restart: unless-stopped
+    expose:
+      - "80"            # só interno na rede do compose; o cloudflared alcança por storybook:80
+    networks:
+      - web
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?defina TUNNEL_TOKEN no .env.prod}
+    depends_on:
+      - storybook
+    networks:
+      - web
+
+networks:
+  web:
