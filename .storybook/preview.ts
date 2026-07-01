@@ -40,6 +40,11 @@ const preview: Preview = {
         layout: 'centered',
         docs: {
             toc: true
+        },
+        options: {
+            storySort: {
+                order: ['Introdução', ['Visão geral', 'Instalação', 'Arquitetura', 'Design Tokens', 'Contribuição'], '*']
+            }
         }
     },
 
