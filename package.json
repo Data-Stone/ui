@@ -1,6 +1,6 @@
 {
   "name": "@data-stone/ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Data Stone Global Design System — componentes Vue + Nuxt Layer compartilhados pelos frontends.",
   "repository": {
@@ -11,10 +11,10 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "main": "./index.ts",
+  "main": "./nuxt.config.ts",
   "types": "./index.ts",
   "exports": {
-    ".": "./index.ts",
+    ".": "./nuxt.config.ts",
     "./components/*": "./components/*",
     "./composables": "./composables/index.ts",
     "./utils": "./utils/index.ts",
