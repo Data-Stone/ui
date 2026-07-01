@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "index.ts",
+    "types.ts",
+    "components/**/*.vue",
+    "components/**/*.ts",
+    "composables/**/*.ts",
+    "utils/**/*.ts"
+  ],
+  "exclude": ["node_modules", "storybook-static", "dist", "stories", ".storybook"]
+}

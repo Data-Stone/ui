@@ -35,7 +35,8 @@
     "build-storybook": "storybook build -o storybook-static",
     "lint": "eslint .",
     "type-check": "vue-tsc --noEmit",
-    "prepublishOnly": "pnpm run type-check"
+    "type-check:publish": "vue-tsc --noEmit -p tsconfig.publish.json",
+    "prepublishOnly": "pnpm run type-check:publish"
   },
   "peerDependencies": {
     "@nuxt/ui": "^4.0.0",
