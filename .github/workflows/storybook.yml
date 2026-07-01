@@ -32,6 +32,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Storybook
+        env:
+          STORYBOOK_BASE: /ui/
         run: pnpm run build-storybook
 
       - name: Upload artifact

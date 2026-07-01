@@ -33,6 +33,11 @@ const config: StorybookConfig = {
         const reactDir = path.dirname(require.resolve('react/package.json'));
         const reactDomDir = path.dirname(require.resolve('react-dom/package.json'));
 
+        // Base path para GitHub Pages (ex: /ui/)
+        if (process.env.STORYBOOK_BASE) {
+            config.base = process.env.STORYBOOK_BASE;
+        }
+
         // Garante que @data-stone/ui resolva para o próprio pacote
         config.resolve = config.resolve ?? {};
         config.resolve.alias = {
