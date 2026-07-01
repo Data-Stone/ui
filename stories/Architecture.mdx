@@ -255,21 +255,46 @@ import { Meta } from '@storybook/blocks';
     O design system é um pacote npm privado publicado no GitHub Packages, consumido
     por cada frontend como uma dependência normal.
   </p>
-  <div className="ds-arch-diagram">
-    <code>
-      <span className="ds-gy">{'                    ┌─────────────────────────────┐'}</span><br/>
-      <span className="ds-gy">{'                    │'}</span><span className="ds-hl">{'   GitHub Packages'}</span><span className="ds-gy">{'          │'}</span><br/>
-      <span className="ds-gy">{'                    │'}</span><span className="ds-gn">{'   @data-stone/ui'}</span><span className="ds-gy">{'           │'}</span><br/>
-      <span className="ds-gy">{'                    └──────────┬──────────────────┘'}</span><br/>
-      <span className="ds-gy">{'                               │'}</span><br/>
-      <span className="ds-gy">{'              ┌────────────────┼────────────────┐'}</span><br/>
-      <span className="ds-gy">{'              │                │                │'}</span><br/>
-      <span className="ds-gy">{'              ▼                ▼                ▼'}</span><br/>
-      <span className="ds-gy">{'┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐'}</span><br/>
-      <span className="ds-gy">{'│'}</span><span className="ds-pp">{' nexus-frontend'}</span><span className="ds-gy">{'  │ │'}</span><span className="ds-pp">{' billing-frontend'}</span><span className="ds-gy">{' │ │'}</span><span className="ds-pp">{' billing-checkout'}</span><span className="ds-gy">{' │'}</span><br/>
-      <span className="ds-gy">{'│'}</span><span className="ds-yw">{' Máquina A'}</span><span className="ds-gy">{'       │ │'}</span><span className="ds-yw">{' Máquina B'}</span><span className="ds-gy">{'       │ │'}</span><span className="ds-yw">{' Máquina C'}</span><span className="ds-gy">{'       │'}</span><br/>
-      <span className="ds-gy">{'└─────────────────┘ └─────────────────┘ └─────────────────┘'}</span>
-    </code>
+  <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '28px 20px', background: '#0f172a', borderRadius: '12px', marginBottom: '24px'}}>
+    <div style={{border: '1px solid #475569', borderRadius: '8px', padding: '14px 28px', textAlign: 'center', background: 'rgba(71,85,105,0.15)'}}>
+      <div style={{color: '#7dd3fc', fontWeight: 600, fontSize: '0.9rem'}}>GitHub Packages</div>
+      <div style={{color: '#4ade80', fontSize: '0.82rem', marginTop: '2px'}}>@data-stone/ui</div>
+    </div>
+    <div style={{width: '1px', height: '24px', background: '#475569'}} />
+    <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', width: '100%', borderTop: '1px solid #475569'}}>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div style={{width: '1px', height: '20px', background: '#475569'}} />
+        <div style={{color: '#64748b', fontSize: '0.7rem', lineHeight: 1, marginBottom: '6px'}}>▼</div>
+        <div style={{border: '1px solid #475569', borderRadius: '8px', padding: '12px', textAlign: 'center', width: '100%', background: 'rgba(71,85,105,0.08)'}}>
+          <div style={{color: '#c084fc', fontWeight: 600, fontSize: '0.82rem'}}>nexus-frontend</div>
+          <div style={{color: '#fbbf24', fontSize: '0.72rem', marginTop: '2px'}}>Máquina A</div>
+        </div>
+      </div>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div style={{width: '1px', height: '20px', background: '#475569'}} />
+        <div style={{color: '#64748b', fontSize: '0.7rem', lineHeight: 1, marginBottom: '6px'}}>▼</div>
+        <div style={{border: '1px solid #475569', borderRadius: '8px', padding: '12px', textAlign: 'center', width: '100%', background: 'rgba(71,85,105,0.08)'}}>
+          <div style={{color: '#c084fc', fontWeight: 600, fontSize: '0.82rem'}}>billing-frontend</div>
+          <div style={{color: '#fbbf24', fontSize: '0.72rem', marginTop: '2px'}}>Máquina B</div>
+        </div>
+      </div>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div style={{width: '1px', height: '20px', background: '#475569'}} />
+        <div style={{color: '#64748b', fontSize: '0.7rem', lineHeight: 1, marginBottom: '6px'}}>▼</div>
+        <div style={{border: '1px solid #475569', borderRadius: '8px', padding: '12px', textAlign: 'center', width: '100%', background: 'rgba(71,85,105,0.08)'}}>
+          <div style={{color: '#c084fc', fontWeight: 600, fontSize: '0.82rem'}}>billing-portal</div>
+          <div style={{color: '#fbbf24', fontSize: '0.72rem', marginTop: '2px'}}>Máquina C</div>
+        </div>
+      </div>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div style={{width: '1px', height: '20px', background: '#475569'}} />
+        <div style={{color: '#64748b', fontSize: '0.7rem', lineHeight: 1, marginBottom: '6px'}}>▼</div>
+        <div style={{border: '1px solid #475569', borderRadius: '8px', padding: '12px', textAlign: 'center', width: '100%', background: 'rgba(71,85,105,0.08)'}}>
+          <div style={{color: '#c084fc', fontWeight: 600, fontSize: '0.82rem'}}>billing-checkout</div>
+          <div style={{color: '#fbbf24', fontSize: '0.72rem', marginTop: '2px'}}>Máquina D</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -283,21 +308,22 @@ import { Meta } from '@storybook/blocks';
   <div className="ds-arch-diagram">
     <code>
       <span className="ds-gy">{'Data-Stone (GitHub Org)'}</span><br/>
-      <span className="ds-gy">{'│'}</span><br/>
-      <span className="ds-gy">{'├── '}</span><span className="ds-gn">{'datastone-ui'}</span><span className="ds-gy">{'          ← @data-stone/ui (design system)'}</span><br/>
-      <span className="ds-gy">{'│   ├── '}</span>{'components/          '}<span className="ds-gy">{'← 44 componentes Ds*'}</span><br/>
-      <span className="ds-gy">{'│   ├── '}</span>{'composables/         '}<span className="ds-gy">{'← 7 composables reutilizáveis'}</span><br/>
-      <span className="ds-gy">{'│   ├── '}</span>{'utils/               '}<span className="ds-gy">{'← formatadores e validadores'}</span><br/>
-      <span className="ds-gy">{'│   ├── '}</span>{'assets/css/tokens.css '}<span className="ds-gy">{'← design tokens (light + dark)'}</span><br/>
-      <span className="ds-gy">{'│   ├── '}</span>{'nuxt.config.ts       '}<span className="ds-gy">{'← configuração Nuxt Layer'}</span><br/>
-      <span className="ds-gy">{'│   └── '}</span>{'index.ts             '}<span className="ds-gy">{'← barrel export'}</span><br/>
-      <span className="ds-gy">{'│'}</span><br/>
-      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'nexus-frontend'}</span><span className="ds-gy">{'        ← Data Reveal (Nuxt 4)'}</span><br/>
-      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'billing-frontend'}</span><span className="ds-gy">{'      ← Billing (Nuxt 4)'}</span><br/>
-      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'billing-checkout'}</span><span className="ds-gy">{'      ← Checkout (Nuxt 4)'}</span><br/>
-      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'nexus'}</span><span className="ds-gy">{'                ← Backend Data Reveal'}</span><br/>
-      <span className="ds-gy">{'├── '}</span><span className="ds-pp">{'billing-backend'}</span><span className="ds-gy">{'       ← Backend Billing'}</span><br/>
-      <span className="ds-gy">{'└── '}</span><span className="ds-pp">{'Stone-Station'}</span><span className="ds-gy">{'         ← Stone Station (Django)'}</span>
+      <span className="ds-gy">{'|'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-gn">{'datastone-ui'}</span><span className="ds-gy">{'          -- @data-stone/ui (design system)'}</span><br/>
+      <span className="ds-gy">{'|   |-- '}</span>{'components/          '}<span className="ds-gy">{'-- 44 componentes Ds*'}</span><br/>
+      <span className="ds-gy">{'|   |-- '}</span>{'composables/         '}<span className="ds-gy">{'-- 7 composables reutilizaveis'}</span><br/>
+      <span className="ds-gy">{'|   |-- '}</span>{'utils/               '}<span className="ds-gy">{'-- formatadores e validadores'}</span><br/>
+      <span className="ds-gy">{'|   |-- '}</span>{'assets/css/tokens.css '}<span className="ds-gy">{'-- design tokens (light + dark)'}</span><br/>
+      <span className="ds-gy">{'|   |-- '}</span>{'nuxt.config.ts       '}<span className="ds-gy">{'-- configuracao Nuxt Layer'}</span><br/>
+      <span className="ds-gy">{'|   `-- '}</span>{'index.ts             '}<span className="ds-gy">{'-- barrel export'}</span><br/>
+      <span className="ds-gy">{'|'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-pp">{'nexus-frontend'}</span><span className="ds-gy">{'        -- Data Reveal (Nuxt 4)'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-pp">{'billing-frontend'}</span><span className="ds-gy">{'      -- Billing (Nuxt 4)'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-pp">{'billing-portal'}</span><span className="ds-gy">{'        -- Billing Portal (Nuxt 4)'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-pp">{'billing-checkout'}</span><span className="ds-gy">{'      -- Checkout (Nuxt 4)'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-pp">{'nexus'}</span><span className="ds-gy">{'                -- Backend Data Reveal'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-pp">{'billing-backend'}</span><span className="ds-gy">{'       -- Backend Billing'}</span><br/>
+      <span className="ds-gy">{'`-- '}</span><span className="ds-pp">{'Stone-Station'}</span><span className="ds-gy">{'         -- Stone Station (Django)'}</span>
     </code>
   </div>
 </div>
@@ -438,14 +464,14 @@ import { Meta } from '@storybook/blocks';
   <div className="ds-arch-diagram">
     <code>
       <span className="ds-yw">{'CI/CD de cada app'}</span><br/>
-      <span className="ds-gy">{'│'}</span><br/>
-      <span className="ds-gy">{'├── '}</span><span className="ds-hl">{'pnpm install'}</span><br/>
-      <span className="ds-gy">{'│   └── '}</span>{'Resolve '}<span className="ds-gn">{'@data-stone/ui@^0.x'}</span>{' do GitHub Packages'}<br/>
-      <span className="ds-gy">{'│'}</span><br/>
-      <span className="ds-gy">{'├── '}</span><span className="ds-hl">{'nuxt build'}</span><br/>
-      <span className="ds-gy">{'│   └── '}</span>{'Componentes Ds* bundlados no build final'}<br/>
-      <span className="ds-gy">{'│'}</span><br/>
-      <span className="ds-gy">{'└── '}</span><span className="ds-hl">{'deploy'}</span><span className="ds-gy">{' → '}</span>{'Sobe '}<span className="ds-pp">{'.output/'}</span>{' para a máquina'}
+      <span className="ds-gy">{'|'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-hl">{'pnpm install'}</span><br/>
+      <span className="ds-gy">{'|   `-- '}</span>{'Resolve '}<span className="ds-gn">{'@data-stone/ui@^0.x'}</span>{' do GitHub Packages'}<br/>
+      <span className="ds-gy">{'|'}</span><br/>
+      <span className="ds-gy">{'|-- '}</span><span className="ds-hl">{'nuxt build'}</span><br/>
+      <span className="ds-gy">{'|   `-- '}</span>{'Componentes Ds* bundlados no build final'}<br/>
+      <span className="ds-gy">{'|'}</span><br/>
+      <span className="ds-gy">{'`-- '}</span><span className="ds-hl">{'deploy'}</span><span className="ds-gy">{' -> '}</span>{'Sobe '}<span className="ds-pp">{'.output/'}</span>{' para a maquina'}
     </code>
   </div>
   <div className="ds-arch-info">

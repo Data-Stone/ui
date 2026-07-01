@@ -24,7 +24,7 @@ const asideOpen = defineModel<boolean>('asideOpen', { default: true })
 
 <template>
   <div
-    class="ds-app-shell flex flex-col min-h-full text-gray-900"
+    class="ds-app-shell flex flex-col min-h-dvh text-gray-900"
     :class="gradient ? 'ds-app-shell--gradient' : 'bg-white'"
   >
     <header v-if="$slots.header" class="border-b border-gray-200 bg-white">

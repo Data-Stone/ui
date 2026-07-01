@@ -5,6 +5,8 @@
  */
 import { computed } from 'vue'
 
+type AvatarColor = 'default' | 'primary' | 'purple' | 'green' | 'amber' | 'red'
+
 interface Props {
   src?: string
   alt?: string
@@ -12,11 +14,13 @@ interface Props {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   icon?: string
   masked?: boolean
+  color?: AvatarColor
 }
 
 const props = withDefaults(defineProps<Props>(), {
   size: 'md',
   icon: 'i-lucide-user',
+  color: 'default',
 })
 
 const initials = computed(() => {
@@ -36,6 +40,15 @@ const sizeClasses: Record<string, string> = {
   lg: 'w-12 h-12 text-base',
   xl: 'w-14 h-14 text-lg',
 }
+
+const colorClasses: Record<AvatarColor, string> = {
+  default: 'bg-blue-50 text-blue-600',
+  primary: 'bg-primary-600 text-white',
+  purple: 'bg-purple-600 text-white',
+  green: 'bg-green-50 text-green-600',
+  amber: 'bg-amber-50 text-amber-600',
+  red: 'bg-red-50 text-red-600',
+}
 </script>
 
 <template>
@@ -52,7 +65,8 @@ const sizeClasses: Record<string, string> = {
     />
     <span
       v-else-if="initials"
-      class="font-semibold bg-blue-50 text-blue-600 w-full h-full flex items-center justify-center"
+      class="font-semibold w-full h-full flex items-center justify-center"
+      :class="colorClasses[color]"
     >
       {{ initials }}
     </span>
