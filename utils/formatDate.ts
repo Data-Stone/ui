@@ -28,6 +28,16 @@ export function formatDateTimeBR(date: Date | string): string {
   return `${datePart} ${hours}:${minutes}`
 }
 
+/** Formata Date para dd/MM/yyyy às HHhMM (formato coloquial pt-BR) */
+export function formatDateTimeHumanBR(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date
+  if (isNaN(d.getTime())) return ''
+  const datePart = formatDateBR(d)
+  const hours = String(d.getHours()).padStart(2, '0')
+  const minutes = String(d.getMinutes()).padStart(2, '0')
+  return `${datePart} às ${hours}h${minutes}`
+}
+
 /** Formata Date para dd/MM/yyyy HH:mm:ss */
 export function formatDateTimeSecondsBR(date: Date | string): string {
   const d = typeof date === 'string' ? new Date(date) : date

@@ -75,6 +75,7 @@ export {
   toISODate,
   formatDateBR,
   formatDateTimeBR,
+  formatDateTimeHumanBR,
   formatDateTimeSecondsBR,
   toBrasiliaTime,
   relativeDate,
@@ -111,6 +112,7 @@ export type {
     KpiItem,
     KpiTrend,
     KpiBadge,
+    PasswordRule,
     TimelineEvent,
     TimelineSeverity
 } from './types';

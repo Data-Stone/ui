@@ -2,6 +2,7 @@ export {
   toISODate,
   formatDateBR,
   formatDateTimeBR,
+  formatDateTimeHumanBR,
   formatDateTimeSecondsBR,
   toBrasiliaTime,
   relativeDate,

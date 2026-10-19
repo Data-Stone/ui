@@ -42,6 +42,12 @@ export interface KpiItem {
     live?: boolean;
 }
 
+// ─── DsPasswordInput ─────────────────────────────────────
+export interface PasswordRule {
+    regex: RegExp;
+    text: string;
+}
+
 // ─── DsTimeline ───────────────────────────────────────────
 export type TimelineSeverity =
     | 'neutral'

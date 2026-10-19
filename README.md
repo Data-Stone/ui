@@ -145,7 +145,7 @@ O pacote expoe diferentes entry points:
 
 ### Datas
 
-`toISODate` · `formatDateBR` · `formatDateTimeBR` · `formatDateTimeSecondsBR` · `toBrasiliaTime` · `relativeDate`
+`toISODate` · `formatDateBR` · `formatDateTimeBR` · `formatDateTimeHumanBR` · `formatDateTimeSecondsBR` · `toBrasiliaTime` · `relativeDate`
 
 ### Tempo
 
