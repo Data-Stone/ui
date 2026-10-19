@@ -28,6 +28,8 @@ interface Props {
   showPerPage?: boolean
   /** Opções de itens por página */
   perPageOptions?: number[]
+  /** Sem borda/rounded — para uso dentro de cards que já têm borda */
+  flat?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -38,6 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
   serverSide: false,
   showPerPage: false,
   perPageOptions: () => [10, 25, 50, 100],
+  flat: false,
 })
 
 const emit = defineEmits<{
@@ -119,14 +122,14 @@ watch(search, () => {
           v-model="search"
           type="text"
           :placeholder="searchPlaceholder"
-          class="w-full pl-9 pr-3 py-2 text-sm border border-gray-300 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+          class="w-full pl-9 pr-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
         />
       </div>
-      <div v-if="showPerPage" class="flex items-center gap-2 text-sm text-gray-500">
+      <div v-if="showPerPage" class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
         <span>Exibir</span>
         <select
           :value="effectivePerPage"
-          class="border border-gray-200 rounded-lg px-2 py-1.5 text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+          class="border border-gray-200 dark:border-gray-700 rounded-lg px-2 py-1.5 text-sm bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
           @change="changePerPage(Number(($event.target as HTMLSelectElement).value))"
         >
           <option v-for="opt in perPageOptions" :key="opt" :value="opt">{{ opt }}</option>
@@ -135,18 +138,23 @@ watch(search, () => {
       </div>
     </div>
 
-    <div class="border border-gray-200 rounded-xl overflow-hidden">
+    <div
+      :class="[
+        'overflow-hidden',
+        flat ? '' : 'border border-gray-200 dark:border-gray-800 rounded-xl',
+      ]"
+    >
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
-            <tr class="border-b border-gray-200 bg-gray-50/80">
+            <tr class="border-b border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/50">
               <th
                 v-for="h in headers"
                 :key="h.key"
                 :class="[
-                  'px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider',
+                  'px-4 py-3 font-medium text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider',
                   alignClass[h.align || 'left'],
-                  h.sortable ? 'cursor-pointer select-none hover:text-gray-900 transition-colors' : '',
+                  h.sortable ? 'cursor-pointer select-none hover:text-gray-900 dark:hover:text-gray-100 transition-colors' : '',
                 ]"
                 :style="h.width ? { width: h.width } : undefined"
                 @click="h.sortable && toggleSort(h.key)"
@@ -162,15 +170,15 @@ watch(search, () => {
           </thead>
           <tbody>
             <template v-if="loading">
-              <tr v-for="n in itemsPerPage" :key="n" class="border-b border-gray-100 last:border-0">
+              <tr v-for="n in itemsPerPage" :key="n" class="border-b border-gray-100 dark:border-gray-800 last:border-0">
                 <td v-for="h in headers" :key="h.key" class="px-4 py-3">
-                  <div class="h-4 rounded bg-gray-100 animate-pulse" />
+                  <div class="h-4 rounded bg-gray-100 dark:bg-gray-700 animate-pulse" />
                 </td>
               </tr>
             </template>
             <template v-else-if="displayItems.length === 0">
               <tr>
-                <td :colspan="headers.length" class="px-4 py-12 text-center text-gray-400">
+                <td :colspan="headers.length" class="px-4 py-12 text-center text-gray-400 dark:text-gray-500">
                   {{ noDataText }}
                 </td>
               </tr>
@@ -179,13 +187,13 @@ watch(search, () => {
               <tr
                 v-for="(item, i) in displayItems"
                 :key="i"
-                class="border-b border-gray-100 last:border-0 hover:bg-gray-50/80 transition-colors duration-150 cursor-pointer"
+                class="border-b border-gray-100 dark:border-gray-800 last:border-0 hover:bg-gray-50/80 dark:hover:bg-gray-800/50 transition-colors duration-150 cursor-pointer"
                 @click="emit('row-click', item)"
               >
                 <td
                   v-for="h in headers"
                   :key="h.key"
-                  :class="['px-4 py-3 text-gray-900', alignClass[h.align || 'left']]"
+                  :class="['px-4 py-3 text-gray-900 dark:text-gray-100', alignClass[h.align || 'left']]"
                 >
                   <slot :name="`item.${h.key}`" :item="item">
                     {{ getNestedValue(item, h.key) ?? '—' }}
@@ -199,7 +207,7 @@ watch(search, () => {
 
       <div
         v-if="totalPages > 1"
-        class="flex items-center justify-between px-4 py-3 border-t border-gray-200 bg-gray-50/80 text-sm text-gray-500"
+        class="flex items-center justify-between px-4 py-3 border-t border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/50 text-sm text-gray-500 dark:text-gray-400"
       >
         <span>Página {{ currentPage }} de {{ totalPages }}</span>
         <div class="flex items-center gap-1">
