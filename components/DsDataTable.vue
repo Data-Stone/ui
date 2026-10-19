@@ -152,7 +152,7 @@ watch(search, () => {
                 v-for="h in headers"
                 :key="h.key"
                 :class="[
-                  'px-4 py-3 font-medium text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider',
+                  'px-5 py-3 font-medium text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider',
                   alignClass[h.align || 'left'],
                   h.sortable ? 'cursor-pointer select-none hover:text-gray-900 dark:hover:text-gray-100 transition-colors' : '',
                 ]"
@@ -171,14 +171,14 @@ watch(search, () => {
           <tbody>
             <template v-if="loading">
               <tr v-for="n in itemsPerPage" :key="n" class="border-b border-gray-100 dark:border-gray-800 last:border-0">
-                <td v-for="h in headers" :key="h.key" class="px-4 py-3">
+                <td v-for="h in headers" :key="h.key" class="px-5 py-3">
                   <div class="h-4 rounded bg-gray-100 dark:bg-gray-700 animate-pulse" />
                 </td>
               </tr>
             </template>
             <template v-else-if="displayItems.length === 0">
               <tr>
-                <td :colspan="headers.length" class="px-4 py-12 text-center text-gray-400 dark:text-gray-500">
+                <td :colspan="headers.length" class="px-5 py-12 text-center text-gray-400 dark:text-gray-500">
                   {{ noDataText }}
                 </td>
               </tr>
@@ -193,7 +193,7 @@ watch(search, () => {
                 <td
                   v-for="h in headers"
                   :key="h.key"
-                  :class="['px-4 py-3 text-gray-900 dark:text-gray-100', alignClass[h.align || 'left']]"
+                  :class="['px-5 py-3 text-gray-900 dark:text-gray-100', alignClass[h.align || 'left']]"
                 >
                   <slot :name="`item.${h.key}`" :item="item">
                     {{ getNestedValue(item, h.key) ?? '—' }}
@@ -207,7 +207,7 @@ watch(search, () => {
 
       <div
         v-if="totalPages > 1"
-        class="flex items-center justify-between px-4 py-3 border-t border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/50 text-sm text-gray-500 dark:text-gray-400"
+        class="flex items-center justify-between px-5 py-3 border-t border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-800/50 text-sm text-gray-500 dark:text-gray-400"
       >
         <span>Página {{ currentPage }} de {{ totalPages }}</span>
         <div class="flex items-center gap-1">
